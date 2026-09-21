@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>patientone labs — intent-driven software</title>
+  <meta name="description" content="Specialized browser extensions, workflow micro-utilities, and intelligent pipelines. Built with intent-driven development & autonomous AI orchestration." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f4f6f8',
+              500: '#3b82f6',
+              600: '#2563eb',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #09090b;
+      color: #fafafa;
+    }
+    .grid-bg {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    .glow {
+      box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.15);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+  
+  <!-- Ambient Grid Background -->
+  <div class="fixed inset-0 grid-bg pointer-events-none -z-10"></div>
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none -z-10"></div>
+
+  <!-- Header / Navigation -->
+  <header class="border-b border-neutral-800/80 bg-neutral-950/70 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 font-mono text-sm tracking-tight text-neutral-100 hover:text-blue-400 transition-colors">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
+        <span class="font-semibold">patientone</span><span class="text-neutral-500">labs</span>
+      </a>
+      
+      <nav class="flex items-center gap-6 text-sm text-neutral-400">
+        <a href="#projects" class="hover:text-neutral-200 transition-colors">Projects</a>
+        <a href="#philosophy" class="hover:text-neutral-200 transition-colors">Philosophy</a>
+        <a href="#contact" class="hover:text-neutral-200 transition-colors">Contact</a>
+        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-200 hover:text-blue-400 transition-colors flex items-center gap-1.5 font-mono text-xs border border-neutral-800 bg-neutral-900/60 px-3 py-1.5 rounded-full">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+          </svg>
+          patientone-io
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="flex-grow">
+    <section class="max-w-4xl mx-auto px-6 pt-24 pb-20 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400 text-xs font-mono mb-8">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+        AI-Native Micro Studio
+      </div>
+      
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-neutral-100 mb-6 leading-tight">
+        Minimalist tools engineered for <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">focused workflows</span>.
+      </h1>
+      
+      <p class="text-lg sm:text-xl text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+        We craft specialized browser extensions and intelligent micro-utilities. Built with intent-driven development & autonomous AI orchestration.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#projects" class="px-6 py-3 rounded-lg bg-neutral-100 text-neutral-950 font-medium text-sm hover:bg-white hover:shadow-lg hover:shadow-white/10 transition-all">
+          Explore Projects
+        </a>
+        <a href="#philosophy" class="px-6 py-3 rounded-lg border border-neutral-800 bg-neutral-900/80 text-neutral-300 font-medium text-sm hover:border-neutral-700 hover:text-white transition-all">
+          Our Philosophy
+        </a>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="max-w-5xl mx-auto px-6 py-20 border-t border-neutral-800/60">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+        <div>
+          <h2 class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">Projects & Tools</h2>
+          <p class="text-2xl font-bold tracking-tight text-neutral-100">Focused software. Zero bloat.</p>
+        </div>
+        <p class="text-sm text-neutral-500 mt-2 sm:mt-0 font-mono">Open-source & prosumer utilities</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Project 1: jellyfin-checker -->
+        <div class="p-6 rounded-2xl border border-neutral-800/80 bg-neutral-900/40 hover:border-neutral-700 hover:bg-neutral-900/70 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-neutral-800 text-neutral-300 border border-neutral-700">Browser Extension</span>
+              <a href="https://github.com/patientone-io/jellyfin-checker" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-neutral-200 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            </div>
+            <h3 class="text-xl font-semibold text-neutral-100 mb-2 group-hover:text-blue-400 transition-colors">
+              jellyfin-checker
+            </h3>
+            <p class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
+              Lightweight browser extension that seamlessly verifies media availability in self-hosted Jellyfin servers while browsing IMDb, Filmweb, and TMDb.
+            </p>
+          </div>
+          <div class="flex items-center gap-4 text-xs font-mono text-neutral-500 pt-4 border-t border-neutral-800/60">
+            <span>JavaScript</span>
+            <span>•</span>
+            <a href="https://github.com/patientone-io/jellyfin-checker" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">View on GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Project 2: Contextual AI Extensions (In development) -->
+        <div class="p-6 rounded-2xl border border-neutral-800/80 bg-neutral-900/40 hover:border-neutral-700 hover:bg-neutral-900/70 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-blue-900/30 text-blue-400 border border-blue-800/40">In Development</span>
+              <span class="text-xs font-mono text-neutral-500">Chrome Web Store</span>
+            </div>
+            <h3 class="text-xl font-semibold text-neutral-100 mb-2 group-hover:text-blue-400 transition-colors">
+              Workflow & Contextual AI Tools
+            </h3>
+            <p class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
+              Autonomous, single-purpose extensions designed for high-density web workflows. Engineered around the <strong>BYOK</strong> (Bring Your Own Key) model for maximum privacy and zero latency.
+            </p>
+          </div>
+          <div class="flex items-center gap-4 text-xs font-mono text-neutral-500 pt-4 border-t border-neutral-800/60">
+            <span>Local-First</span>
+            <span>•</span>
+            <span>Privacy-Native</span>
+            <span>•</span>
+            <span class="text-neutral-400">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy / Core Pillars -->
+    <section id="philosophy" class="max-w-5xl mx-auto px-6 py-20 border-t border-neutral-800/60">
+      <div class="mb-12">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">Philosophy</h2>
+        <p class="text-2xl font-bold tracking-tight text-neutral-100">How we engineer software</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="space-y-3">
+          <div class="w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-blue-400 font-mono text-sm">
+            01
+          </div>
+          <h4 class="text-base font-semibold text-neutral-200">Intent-Driven Velocity</h4>
+          <p class="text-sm text-neutral-400 font-light leading-relaxed">
+            By leveraging autonomous AI orchestration and rapid vibe-coding paradigms, we move from conceptual idea to production-grade utility in hours, skipping bureaucratic bloat.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-blue-400 font-mono text-sm">
+            02
+          </div>
+          <h4 class="text-base font-semibold text-neutral-200">Architectural Privacy (BYOK)</h4>
+          <p class="text-sm text-neutral-400 font-light leading-relaxed">
+            We reject the surveillance business model. Whenever possible, our tools use the Bring-Your-Own-Key model: your API tokens remain in your browser storage and connect directly to providers.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="w-10 h-10 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-blue-400 font-mono text-sm">
+            03
+          </div>
+          <h4 class="text-base font-semibold text-neutral-200">Single-Purpose Precision</h4>
+          <p class="text-sm text-neutral-400 font-light leading-relaxed">
+            No messy multi-tools or confusing menus. Each extension solves one acute problem with uncompromising speed, rock-solid stability, and minimal memory footprint.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="max-w-3xl mx-auto px-6 py-20 border-t border-neutral-800/60 text-center">
+      <div class="p-8 sm:p-12 rounded-3xl border border-neutral-800/90 bg-neutral-900/50 glow">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-100 mb-4">
+          Direct Line & Inquiries
+        </h2>
+        <p class="text-neutral-400 text-sm sm:text-base mb-8 max-w-lg mx-auto font-light">
+          Have an idea for a workflow tool, support question, or partnership inquiry? Reach out directly.
+        </p>
+        
+        <div class="inline-flex flex-col sm:flex-row items-center gap-4">
+          <a href="mailto:contact@patientone.uk" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-all flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            contact@patientone.uk
+          </a>
+          <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl border border-neutral-800 bg-neutral-900 text-neutral-300 hover:text-white hover:border-neutral-700 text-sm font-mono transition-all">
+            github.com/patientone-io
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-neutral-800/80 bg-neutral-950 py-10">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-neutral-500 font-mono">
+      <div>
+        © 2026 <span class="text-neutral-300 font-semibold">patientone labs</span>. All rights reserved.
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <a href="privacy.html" class="hover:text-neutral-300 transition-colors">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-neutral-300 transition-colors">Terms of Service</a>
+        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-300 transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
