@@ -1,6 +1,8 @@
 # 🌐 patientone.uk
 
 > 🚀 Personal portfolio and showcase for **patientone** — indie builder, homelab tools, browser extensions, and local-first software.
+>
+> 🇵🇱 Osobista strona wizytówkowa i portfolio **patientone** — projekty homelabowe, rozszerzenia przeglądarek i oprogramowanie local-first.
 
 [ 🇬🇧 English ](#-english) • [ 🇵🇱 Polski ](#-polski)
 
@@ -66,7 +68,7 @@ Otwórz `http://localhost:8080` w przeglądarce.
 
 ---
 
-## 👤 Author & Contact
+## 👤 Author & Contact / Autor i kontakt
 
 - **Author:** [patientone](https://github.com/patientone-io)
 - **Website:** [patientone.uk](https://patientone.uk)
