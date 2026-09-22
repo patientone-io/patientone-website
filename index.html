@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>patientone — indie builder & homelab tools</title>
-  <meta name="description" content="Cześć, jestem patientone. Tworzę małe, ostre narzędzia, wtyczki do przeglądarki i automatyzacje w duchu local-first." />
+  <meta name="description" content="Cześć, jestem patientone. Tworzę minimalistyczne narzędzia, wtyczki do przeglądarki i automatyzacje homelaba w duchu local-first." />
   <meta name="theme-color" content="#09090b" />
+  
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="manifest" href="/site.webmanifest" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -21,379 +27,424 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Geist"', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'monospace'],
+          },
+          colors: {
+            surface: {
+              DEFAULT: '#09090b',
+              raised: '#111114',
+              card: '#141418',
+              hover: '#1a1a20',
+              border: 'rgba(255, 255, 255, 0.07)',
+              'border-hover': 'rgba(255, 255, 255, 0.16)',
+            }
           }
         }
       }
     }
   </script>
+
   <style>
     body {
       background-color: #09090b;
-      color: #fafafa;
+      color: #ececf1;
     }
-    .grid-bg {
-      background-size: 32px 32px;
+
+    /* Clean balanced code styling */
+    code {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.8em !important;
+      padding: 0.12em 0.35em !important;
+      border-radius: 0.25rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      vertical-align: baseline;
+    }
+    
+    /* Subtle background grid pattern */
+    .bg-grid {
+      background-size: 36px 36px;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 10%, #000 60%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 10%, #000 60%, transparent 100%);
     }
-    .glow {
-      box-shadow: 0 0 60px -15px rgba(59, 130, 246, 0.12);
-    }
+
+    /* Language switching */
     [data-lang] {
-      transition: opacity 0.15s ease-in-out;
+      transition: opacity 0.12s ease-in-out;
     }
     .hidden-lang {
       display: none !important;
     }
+
+    /* Interactive filter tab */
+    .filter-tab.active {
+      background-color: rgba(255, 255, 255, 0.09);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Interactive Hero Title with refined cursor shine matching avatar cobalt/platinum */
+    .hero-title-interactive {
+      background: radial-gradient(
+        240px circle at var(--mouse-x, 25%) var(--mouse-y, 50%),
+        #ffffff 0%,
+        #f1f5f9 35%,
+        #cbd5e1 65%,
+        #94a3b8 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: filter 0.3s ease;
+      display: inline-block;
+    }
+    .hero-title-wrapper:hover .hero-title-interactive {
+      background: radial-gradient(
+        240px circle at var(--mouse-x, 25%) var(--mouse-y, 50%),
+        #ffffff 0%,
+        #dbeafe 30%,
+        #93c5fd 55%,
+        #2563eb 85%,
+        #1e40af 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.28));
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+<body class="min-h-screen flex flex-col font-sans selection:bg-neutral-800 selection:text-white antialiased">
 
   <!-- Ambient Grid Background -->
-  <div class="fixed inset-0 grid-bg pointer-events-none -z-10"></div>
-  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/10 blur-[140px] rounded-full pointer-events-none -z-10"></div>
+  <div class="fixed inset-0 bg-grid pointer-events-none -z-10"></div>
+  
+  <!-- Subtle top accent glow -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[220px] bg-blue-500/[0.04] blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
-  <!-- Header / Navigation -->
-  <header class="border-b border-neutral-800/80 bg-neutral-950/70 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2 font-mono text-sm tracking-tight text-neutral-100 hover:text-blue-400 transition-colors">
-        <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
-        <span class="font-semibold">patientone</span><span class="text-neutral-500">.uk</span>
+  <!-- Header -->
+  <header class="border-b border-white/[0.06] bg-[#09090b]/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 font-mono text-sm tracking-tight text-neutral-200 hover:text-white transition-colors group">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+        <span><span class="font-semibold text-neutral-100">patientone</span><span class="text-neutral-500 font-normal">.uk</span></span>
       </a>
-      
-      <div class="flex items-center gap-4 sm:gap-6">
-        <nav class="hidden sm:flex items-center gap-6 text-sm text-neutral-400">
-          <a href="#about" class="hover:text-neutral-200 transition-colors">
-            <span data-lang="pl">O mnie</span><span data-lang="en">About</span>
-          </a>
-          <a href="#projects" class="hover:text-neutral-200 transition-colors">
-            <span data-lang="pl">Projekty</span><span data-lang="en">Projects</span>
-          </a>
-          <a href="#rules" class="hover:text-neutral-200 transition-colors">
-            <span data-lang="pl">Zasady</span><span data-lang="en">Ethos</span>
-          </a>
-          <a href="#contact" class="hover:text-neutral-200 transition-colors">
-            <span data-lang="pl">Kontakt</span><span data-lang="en">Contact</span>
-          </a>
-        </nav>
 
+      <div class="flex items-center gap-3 sm:gap-4">
         <!-- Language Switcher [ PL | EN ] -->
-        <div class="flex items-center bg-neutral-900 border border-neutral-800 rounded-lg p-0.5 text-xs font-mono">
-          <button id="btn-pl" onclick="setLanguage('pl')" class="px-2.5 py-1 rounded font-medium transition-colors text-white bg-neutral-800">PL</button>
-          <button id="btn-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded font-medium transition-colors text-neutral-400 hover:text-white">EN</button>
+        <div class="flex items-center bg-white/[0.04] border border-white/[0.08] rounded-md p-0.5 text-xs font-mono">
+          <button id="btn-pl" onclick="setLanguage('pl')" class="px-2 py-0.5 rounded text-white bg-white/[0.1] font-medium transition-all">PL</button>
+          <button id="btn-en" onclick="setLanguage('en')" class="px-2 py-0.5 rounded text-neutral-400 hover:text-neutral-200 font-medium transition-all">EN</button>
         </div>
 
-        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-200 hover:text-blue-400 transition-colors flex items-center gap-1.5 font-mono text-xs border border-neutral-800 bg-neutral-900/60 px-3 py-1.5 rounded-lg">
+        <!-- GitHub Profile Link -->
+        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white hover:border-white/20 transition-all flex items-center gap-1.5 font-mono text-xs border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 rounded-md" title="GitHub Profile">
           <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
           </svg>
-          <span class="hidden sm:inline">github</span>
+          <span class="hidden sm:inline">patientone-io</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <main class="flex-grow">
-    <section id="about" class="max-w-4xl mx-auto px-6 pt-20 pb-16">
+  <!-- Main Content -->
+  <main class="flex-grow max-w-4xl mx-auto w-full px-6 pt-16 pb-24 space-y-20">
+
+    <!-- Hero / Intro -->
+    <section class="space-y-6">
       
-      <!-- Avatar & Badge -->
-      <div class="flex items-center gap-4 mb-8">
+      <!-- Avatar + Name Row -->
+      <div class="flex items-center gap-4 sm:gap-5">
         <div class="relative flex-shrink-0">
-          <img src="https://github.com/patientone-io.png" alt="patientone" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-neutral-800 object-cover bg-neutral-900 shadow-xl shadow-blue-500/10 hover:border-blue-500/60 transition-all" />
-          <span class="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-neutral-950" title="Active"></span>
+          <img src="/avatar.png" alt="patientone" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-white/20 object-cover shadow-lg shadow-black/60">
+          <span class="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#09090b] shadow-[0_0_8px_rgba(16,185,129,0.7)]" title="Aktywny twórca"></span>
         </div>
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400 text-xs font-mono">
-            <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-            <span data-lang="pl">Indie Builder & Homelab Tinkerer • 🇵🇱 🇬🇧</span>
-            <span data-lang="en">Indie Builder & Homelab Tinkerer • 🇵🇱 🇬🇧</span>
-          </div>
-          <p class="text-xs font-mono text-neutral-500 mt-1.5 flex items-center gap-1">
-            <span>github.com/patientone-io</span>
-          </p>
+
+        <div id="hero-title-wrapper" class="hero-title-wrapper relative inline-block group/title cursor-default">
+          <span class="pointer-events-none absolute -inset-3 rounded-2xl bg-blue-500/[0.05] blur-xl opacity-0 transition-opacity duration-500 group-hover/title:opacity-100 -z-10"></span>
+          <h1 id="hero-title" class="hero-title-interactive text-3xl sm:text-5xl font-semibold tracking-[-0.035em] leading-tight select-none">
+            patientone
+          </h1>
         </div>
       </div>
-      
-      <!-- Title -->
-      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-neutral-100 mb-6 leading-tight">
-        <span data-lang="pl">Cześć, jestem <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">patientone</span> 👋</span>
-        <span data-lang="en">Hi, I'm <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">patientone</span> 👋</span>
-      </h1>
-      
-      <!-- Lead / Manifesto -->
-      <div class="space-y-4 text-base sm:text-lg text-neutral-300 font-light leading-relaxed max-w-3xl">
-        <div data-lang="pl" class="space-y-4">
-          <p class="text-xl sm:text-2xl font-normal text-neutral-100">
-            Projektuję i buduję minimalistyczne narzędzia internetowe, rozszerzenia do przeglądarek oraz automatyzacje.
+
+      <!-- Subtitle Tag -->
+      <div>
+        <span class="inline-flex items-center px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] text-neutral-300 text-xs sm:text-sm font-mono">
+          <span data-lang="pl">Homelab & Web • Buduję dla siebie</span>
+          <span data-lang="en">Homelab & Web • Building for daily use</span>
+        </span>
+      </div>
+
+      <!-- Bio / About -->
+      <div class="text-neutral-300 text-base sm:text-lg leading-relaxed space-y-4 max-w-2xl font-light">
+        <div data-lang="pl" class="space-y-3">
+          <p>
+            Cześć. Tworzę użyteczne narzędzia — od wtyczek do przeglądarki, przez narzędzia CLI i automatyzacje homelaba, po niskopoziomowe skrypty pod Linuksa.
           </p>
-          <p class="text-neutral-400">
-            Łączę pasję do homelaba z nowoczesnym programowaniem wspomaganym przez AI (<em>intent-driven development</em>). Tworzę szybkie, wyspecjalizowane rozwiązania, które robią dokładnie jedną rzecz — bez zbędnego balastu, bez śledzenia użytkowników i w 100% lokalnie.
-          </p>
-          <p class="text-neutral-400">
-            Wszystkie moje projekty opierają się na architekturze <strong>Local-First</strong> oraz modelu <strong>BYOK</strong> (Bring Your Own Key): Twoje dane, historia i klucze API zostają w Twojej przeglądarce.
+          <p class="text-neutral-400 text-base">
+            Jestem hobbystą i piszę wyłącznie rzeczy, których sam realnie potrzebuję i z których codziennie korzystam. Dlatego je dopieszczam: mają działać niezawodnie, błyskawicznie i bez zbędnego balastu. 100% local-first, zero telemetrii.
           </p>
         </div>
 
-        <div data-lang="en" class="space-y-4">
-          <p class="text-xl sm:text-2xl font-normal text-neutral-100">
-            I design and build minimalist web tools, browser extensions, and automations.
+        <div data-lang="en" class="space-y-3">
+          <p>
+            Hi. I build useful tools — from browser extensions and CLI utilities to homelab automations and low-level Linux scripts.
           </p>
-          <p class="text-neutral-400">
-            Combining a passion for self-hosting and homelabs with AI-accelerated engineering (<em>intent-driven development</em>). I craft focused, lightweight utilities that do one job exceptionally well — zero bloatware, zero tracking, and strictly local-first.
-          </p>
-          <p class="text-neutral-400">
-            Built around <strong>Local-First architecture</strong> and a strict <strong>BYOK</strong> (Bring Your Own Key) model: your data, browsing history, and credentials stay inside your browser.
+          <p class="text-neutral-400 text-base">
+            I'm a hobbyist builder creating tools I actually need and use myself every single day. That's why I polish them: they have to be rock-solid, fast, and completely bloat-free. 100% local-first, zero telemetry.
           </p>
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-neutral-900">
-        <a href="#projects" class="px-5 py-2.5 rounded-lg bg-neutral-100 text-neutral-950 font-medium text-sm hover:bg-white transition-all">
-          <span data-lang="pl">Zobacz moje narzędzia &darr;</span>
-          <span data-lang="en">Explore my tools &darr;</span>
+      <!-- Quick Actions -->
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <a href="#projects" class="px-4 py-2 rounded-lg bg-white text-neutral-950 font-medium text-xs sm:text-sm hover:bg-neutral-200 transition-colors flex items-center gap-2">
+          <span data-lang="pl">Zobacz projekty ↓</span>
+          <span data-lang="en">Explore projects ↓</span>
         </a>
-        <a href="mailto:contact@patientone.uk" class="px-5 py-2.5 rounded-lg border border-neutral-800 bg-neutral-900/60 text-neutral-300 font-medium text-sm hover:border-neutral-700 hover:text-white transition-all font-mono">
-          contact@patientone.uk
+
+        <!-- Copy Email Button -->
+        <button id="copy-email-btn" onclick="copyEmail()" class="px-4 py-2 rounded-lg border border-white/[0.08] bg-white/[0.03] text-neutral-300 font-mono text-xs sm:text-sm hover:bg-white/[0.07] hover:border-white/20 transition-all flex items-center gap-2 group relative">
+          <svg class="w-3.5 h-3.5 text-neutral-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+          </svg>
+          <span id="email-text">contact@patientone.uk</span>
+          <span id="copied-tooltip" class="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-neutral-800 border border-white/10 text-white text-[10px] font-mono rounded opacity-0 pointer-events-none transition-opacity">
+            <span data-lang="pl">Skopiowano!</span>
+            <span data-lang="en">Copied!</span>
+          </span>
+        </button>
+
+        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg border border-white/[0.08] bg-white/[0.03] text-neutral-300 font-mono text-xs sm:text-sm hover:bg-white/[0.07] hover:border-white/20 transition-all flex items-center gap-1.5">
+          <span>GitHub</span>
+          <svg class="w-3 h-3 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
         </a>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="max-w-5xl mx-auto px-6 py-16 border-t border-neutral-800/60">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
+    <section id="projects" class="space-y-6 pt-4 border-t border-white/[0.06]">
+      
+      <!-- Section Header & Filter Tabs -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-1">
-            <span data-lang="pl">Narzędzia i Wtyczki</span>
-            <span data-lang="en">Tools & Extensions</span>
+          <h2 class="text-xl font-semibold tracking-tight text-white flex items-center gap-2">
+            <span data-lang="pl">Wybrane projekty</span>
+            <span data-lang="en">Featured projects</span>
+            <span class="text-xs font-mono font-normal text-neutral-500 bg-white/[0.04] border border-white/[0.06] px-2 py-0.5 rounded-full">3</span>
           </h2>
-          <p class="text-2xl font-bold tracking-tight text-neutral-100">
-            <span data-lang="pl">Rzeczy, których sam używam</span>
-            <span data-lang="en">Built for actual daily use</span>
-          </p>
         </div>
-        <p class="text-xs text-neutral-500 mt-2 sm:mt-0 font-mono">
-          <span data-lang="pl">Otwarty kod • Bez spamu</span>
-          <span data-lang="en">Open Source • Zero Bloat</span>
-        </p>
+
+        <!-- Filter tabs -->
+        <div class="flex items-center gap-1.5 text-xs font-mono overflow-x-auto pb-1 sm:pb-0">
+          <button onclick="filterCategory('all')" data-category-btn="all" class="filter-tab active px-2.5 py-1 rounded-md border border-transparent text-neutral-400 hover:text-white transition-all">
+            <span data-lang="pl">Wszystkie</span><span data-lang="en">All</span>
+          </button>
+          <button onclick="filterCategory('extensions')" data-category-btn="extensions" class="filter-tab px-2.5 py-1 rounded-md border border-transparent text-neutral-400 hover:text-white transition-all">
+            Extensions
+          </button>
+          <button onclick="filterCategory('cli')" data-category-btn="cli" class="filter-tab px-2.5 py-1 rounded-md border border-transparent text-neutral-400 hover:text-white transition-all">
+            CLI & Audio
+          </button>
+          <button onclick="filterCategory('hardware')" data-category-btn="hardware" class="filter-tab px-2.5 py-1 rounded-md border border-transparent text-neutral-400 hover:text-white transition-all">
+            Linux / ACPI
+          </button>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
+      <!-- Projects List / Craft Rows -->
+      <div class="space-y-3" id="projects-container">
+
         <!-- Project 1: jellyfin-checker -->
-        <div class="p-6 rounded-2xl border border-neutral-800/80 bg-neutral-900/40 hover:border-neutral-700 hover:bg-neutral-900/70 transition-all flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Chrome Extension</span>
-              <a href="https://github.com/patientone-io/jellyfin-checker" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-neutral-200 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg>
-              </a>
+        <div data-category="extensions" class="project-item group relative rounded-xl border border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.14] transition-all duration-200 p-5 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <h3 class="text-base sm:text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
+                <a href="https://github.com/patientone-io/jellyfin-checker" target="_blank" rel="noopener noreferrer" class="focus:outline-none">
+                  <span class="absolute inset-0"></span>
+                  jellyfin-checker
+                </a>
+              </h3>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                Chrome Extension
+              </span>
             </div>
-            <h3 class="text-xl font-semibold text-neutral-100 mb-2">
-              Jellyfin Checker
-            </h3>
-            
-            <p data-lang="pl" class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
-              Sprawdza dostępność filmów i seriali w Twoim domowym serwerze Jellyfin bezpośrednio podczas przeglądania <strong>Filmwebu</strong>, <strong>IMDb</strong> i <strong>TMDb</strong>. Jeśli filmu brakuje, jednym kliknięciem wysyła prośbę na Twój Telegram.
-            </p>
-            <p data-lang="en" class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
-              Automatically verifies media availability on your private Jellyfin server while browsing <strong>Filmweb</strong>, <strong>IMDb</strong>, and <strong>TMDb</strong>. Includes one-click request notifications sent straight to your Telegram bot.
-            </p>
+
+            <div class="relative z-10 flex items-center gap-2 text-xs font-mono text-neutral-500">
+              <span class="hidden sm:inline-block">Manifest V3</span>
+              <svg class="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+            </div>
           </div>
-          <div class="flex items-center gap-4 text-xs font-mono text-neutral-500 pt-4 border-t border-neutral-800/60">
-            <span>Manifest V3</span>
-            <span>•</span>
-            <span>Telegram HITL</span>
-            <span>•</span>
-            <a href="https://github.com/patientone-io/jellyfin-checker" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">GitHub &rarr;</a>
+
+          <p data-lang="pl" class="text-sm text-neutral-400 leading-relaxed font-light mb-4 max-w-2xl">
+            Weryfikuje dostępność filmów i seriali w domowej bibliotece Jellyfin bezpośrednio podczas przeglądania <strong>Filmwebu</strong>, <strong>IMDb</strong> i <strong>TMDb</strong>. Zawiera natychmiastowe wysyłanie próśb o brakujące pozycje na bota Telegram (HITL).
+          </p>
+          <p data-lang="en" class="text-sm text-neutral-400 leading-relaxed font-light mb-4 max-w-2xl">
+            Verifies media availability on your personal Jellyfin server directly on <strong>Filmweb</strong>, <strong>IMDb</strong>, and <strong>TMDb</strong>. Includes one-click request triggers sent straight to your Telegram bot (HITL).
+          </p>
+
+          <div class="relative z-10 flex flex-wrap items-center gap-2 text-[11px] font-mono text-neutral-400">
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">JavaScript</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">Filmweb & TMDb</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">Telegram Bot API</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">Local Storage</span>
           </div>
         </div>
 
         <!-- Project 2: opusbook -->
-        <div class="p-6 rounded-2xl border border-neutral-800/80 bg-neutral-900/40 hover:border-neutral-700 hover:bg-neutral-900/70 transition-all flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">CLI Tool</span>
-              <a href="https://github.com/patientone-io/opusbook" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-neutral-200 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg>
-              </a>
+        <div data-category="cli" class="project-item group relative rounded-xl border border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.14] transition-all duration-200 p-5 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <h3 class="text-base sm:text-lg font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                <a href="https://github.com/patientone-io/opusbook" target="_blank" rel="noopener noreferrer" class="focus:outline-none">
+                  <span class="absolute inset-0"></span>
+                  opusbook
+                </a>
+              </h3>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                CLI Tool
+              </span>
             </div>
-            <h3 class="text-xl font-semibold text-neutral-100 mb-2">
-              opusbook
-            </h3>
-            
-            <p data-lang="pl" class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
-              Wielowątkowy konwerter plików audio (MP3, M4B, FLAC) do formatu <strong>Opus</strong> dla audiobooków i podcastów. Oszczędza 60–75% miejsca na dysku z zachowaniem krystalicznej jakości mowy. Auto-dobieranie bitrate mono/stereo, kolorowy terminal i ekstrakcja okładek.
-            </p>
-            <p data-lang="en" class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
-              Fast, multi-threaded audio-to-<strong>Opus</strong> converter tailored for audiobooks and podcasts. Reduces storage size by 60–75% with transparent speech fidelity. Features auto mono/stereo bitrate tuning, rich terminal UI, and cover art extraction.
-            </p>
+
+            <div class="relative z-10 flex items-center gap-2 text-xs font-mono text-neutral-500">
+              <span class="hidden sm:inline-block">Python 3.12</span>
+              <svg class="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+            </div>
           </div>
-          <div class="flex items-center gap-4 text-xs font-mono text-neutral-500 pt-4 border-t border-neutral-800/60">
-            <span>Python / ffmpeg</span>
-            <span>•</span>
-            <span>Audiobookshelf</span>
-            <span>•</span>
-            <a href="https://github.com/patientone-io/opusbook" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">GitHub &rarr;</a>
+
+          <p data-lang="pl" class="text-sm text-neutral-400 leading-relaxed font-light mb-4 max-w-2xl">
+            Wielowątkowy konwerter plików audio (MP3, M4B, FLAC) do kodeka <strong>Opus</strong>, zoptymalizowany pod audiobooki i podcasty. Oszczędza 60–75% miejsca na serwerze Audiobookshelf przy krystalicznej wyrazistości mowy, z inteligentnym doborem bitrate mono/stereo i zachowaniem metadanych.
+          </p>
+          <p data-lang="en" class="text-sm text-neutral-400 leading-relaxed font-light mb-4 max-w-2xl">
+            Multi-threaded audio-to-<strong>Opus</strong> converter tailored for audiobooks and podcasts. Slashes file sizes by 60–75% while keeping pristine vocal clarity. Features automatic mono/stereo bitrate tuning, rich CLI progress, and metadata extraction.
+          </p>
+
+          <div class="relative z-10 flex flex-wrap items-center gap-2 text-[11px] font-mono text-neutral-400">
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">Python</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">FFmpeg / libopus</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">Audiobookshelf</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">Rich UI</span>
           </div>
         </div>
 
         <!-- Project 3: legion-nvidia-off -->
-        <div class="p-6 rounded-2xl border border-neutral-800/80 bg-neutral-900/40 hover:border-neutral-700 hover:bg-neutral-900/70 transition-all flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Linux / ACPI</span>
-              <a href="https://github.com/patientone-io/legion-nvidia-off" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-neutral-200 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg>
-              </a>
+        <div data-category="hardware" class="project-item group relative rounded-xl border border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.14] transition-all duration-200 p-5 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <h3 class="text-base sm:text-lg font-semibold text-white group-hover:text-purple-400 transition-colors">
+                <a href="https://github.com/patientone-io/legion-nvidia-off" target="_blank" rel="noopener noreferrer" class="focus:outline-none">
+                  <span class="absolute inset-0"></span>
+                  legion-nvidia-off
+                </a>
+              </h3>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                Linux / ACPI
+              </span>
             </div>
-            <h3 class="text-xl font-semibold text-neutral-100 mb-2 font-mono">
-              legion-nvidia-off
-            </h3>
-            
-            <p data-lang="pl" class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
-              Sprzętowe odcięcie zasilania dedykowanej karty NVIDIA (stan <strong>D3cold</strong>) dla laptopa <strong>Lenovo Legion 5 Pro (82JQ)</strong> pod Linuksem. Nadpisywanie tabel ACPI SSDT i odblokowanie flagi <code class="text-xs font-mono text-neutral-300 bg-neutral-800 px-1 py-0.5 rounded">OPCE = 0x03</code> redukuje pobór mocy do 0W i wydłuża pracę na baterii do 6–8h.
-            </p>
-            <p data-lang="en" class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
-              Hardware-level power cutoff (<strong>D3cold</strong> state) for NVIDIA dGPU on <strong>Lenovo Legion 5 Pro (82JQ)</strong> under Linux. Early ACPI SSDT table overrides and OEM <code class="text-xs font-mono text-neutral-300 bg-neutral-800 px-1 py-0.5 rounded">OPCE = 0x03</code> unblocking drops dGPU draw to 0W and extends battery life to 6–8h.
-            </p>
+
+            <div class="relative z-10 flex items-center gap-2 text-xs font-mono text-neutral-500">
+              <span class="hidden sm:inline-block">D3cold (0W)</span>
+              <svg class="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+            </div>
           </div>
-          <div class="flex items-center gap-4 text-xs font-mono text-neutral-500 pt-4 border-t border-neutral-800/60">
-            <span>ACPI SSDT</span>
-            <span>•</span>
-            <span>D3cold (0W)</span>
-            <span>•</span>
-            <a href="https://github.com/patientone-io/legion-nvidia-off" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">GitHub &rarr;</a>
+
+          <p data-lang="pl" class="text-sm text-neutral-400 leading-relaxed font-light mb-4 max-w-2xl">
+            Sprzętowe odcięcie zasilania karty dGPU NVIDIA do stanu <strong>D3cold</strong> w laptopie Lenovo Legion 5 Pro (82JQ) pod Linuksem. Nadpisywanie tabel ACPI SSDT odblokowuje ukrytą flagę OEM <code class="text-xs font-mono text-neutral-300 bg-white/[0.06] px-1 py-0.5 rounded">OPCE = 0x03</code>, redukując pobór karty do 0W i wydłużając czas pracy na baterii do 6–8 godzin.
+          </p>
+          <p data-lang="en" class="text-sm text-neutral-400 leading-relaxed font-light mb-4 max-w-2xl">
+            Hardware-level power cutoff (<strong>D3cold</strong> state) for NVIDIA dGPU on Lenovo Legion 5 Pro (82JQ) under Linux. SSDT overrides unblock the OEM <code class="text-xs font-mono text-neutral-300 bg-white/[0.06] px-1 py-0.5 rounded">OPCE = 0x03</code> flag, dropping idle dGPU draw to 0W and doubling battery runtime to 6–8h.
+          </p>
+
+          <div class="relative z-10 flex flex-wrap items-center gap-2 text-[11px] font-mono text-neutral-400">
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">ACPI SSDT</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">Linux Kernel</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">systemd</span>
+            <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">Hardware Mod</span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Ethos / Principles -->
-    <section id="rules" class="max-w-5xl mx-auto px-6 py-16 border-t border-neutral-800/60">
-      <div class="mb-10">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-1">
-          <span data-lang="pl">Moje Zasady</span>
-          <span data-lang="en">My Ethos</span>
-        </h2>
-        <p class="text-2xl font-bold tracking-tight text-neutral-100">
-          <span data-lang="pl">Dlaczego moje narzędzia działają inaczej</span>
-          <span data-lang="en">Why my software is built differently</span>
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="space-y-3 p-5 rounded-xl border border-neutral-800/50 bg-neutral-900/20">
-          <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-blue-400 font-mono text-xs">
-            01
+        <!-- In-progress / Next Teaser -->
+        <div class="rounded-xl border border-dashed border-white/[0.07] p-5 sm:p-6 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
+          <div class="flex items-center gap-2.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-neutral-600"></span>
+            <span data-lang="pl">W przygotowaniu: nowe projekty self-hosted, rozszerzenia przeglądarki i automatyzacje.</span>
+            <span data-lang="en">In the pipeline: new self-hosted services, browser extensions, and automations.</span>
           </div>
-          <h4 class="text-base font-semibold text-neutral-200">
-            <span data-lang="pl">Local-First & Zero Śledzenia</span>
-            <span data-lang="en">Local-First & Zero Tracking</span>
-          </h4>
-          <p data-lang="pl" class="text-sm text-neutral-400 font-light leading-relaxed">
-            Nie zbieram Twoich danych, nie śledzę Twojej historii i nie mam serwerów z bazami użytkowników. Twoje klucze i preferencje siedzą w pamięci Twojej przeglądarki.
-          </p>
-          <p data-lang="en" class="text-sm text-neutral-400 font-light leading-relaxed">
-            No telemetry, no tracking scripts, and no user database. Your settings and credentials reside exclusively in your browser's secure local storage.
-          </p>
-        </div>
-
-        <div class="space-y-3 p-5 rounded-xl border border-neutral-800/50 bg-neutral-900/20">
-          <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-blue-400 font-mono text-xs">
-            02
-          </div>
-          <h4 class="text-base font-semibold text-neutral-200">
-            <span data-lang="pl">Jedno zadanie, zrobione porządnie</span>
-            <span data-lang="en">Single-Purpose Precision</span>
-          </h4>
-          <p data-lang="pl" class="text-sm text-neutral-400 font-light leading-relaxed">
-            Nienawidzę oprogramowania-kombajnu, które robi 50 rzeczy przeciętnie. Moje wtyczki robią dokładnie jedną rzecz, ale błyskawicznie, stabilnie i bez pożerania pamięci RAM.
-          </p>
-          <p data-lang="en" class="text-sm text-neutral-400 font-light leading-relaxed">
-            I refuse to build bloated all-in-one platforms. Each utility solves one acute problem with uncompromising speed, rock-solid stability, and minimal memory footprint.
-          </p>
-        </div>
-
-        <div class="space-y-3 p-5 rounded-xl border border-neutral-800/50 bg-neutral-900/20">
-          <div class="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-blue-400 font-mono text-xs">
-            03
-          </div>
-          <h4 class="text-base font-semibold text-neutral-200">
-            <span data-lang="pl">Tworzone z pasji dla siebie</span>
-            <span data-lang="en">Dogfooding Everything</span>
-          </h4>
-          <p data-lang="pl" class="text-sm text-neutral-400 font-light leading-relaxed">
-            Publikuję wyłącznie narzędzia, z których sam codziennie korzystam w moim homelabie. Jeśli coś w nich nie działa, denerwuje to mnie pierwszego — więc od razu to naprawiam.
-          </p>
-          <p data-lang="en" class="text-sm text-neutral-400 font-light leading-relaxed">
-            I only release tools that I actively use every day. When something breaks or changes on Filmweb/IMDb, I feel it first — and push fixes immediately.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="max-w-3xl mx-auto px-6 py-16 border-t border-neutral-800/60 text-center">
-      <div class="p-8 sm:p-12 rounded-3xl border border-neutral-800/90 bg-neutral-900/50 glow">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-100 mb-3">
-          <span data-lang="pl">Napisz do mnie</span>
-          <span data-lang="en">Direct Line</span>
-        </h2>
-        <p data-lang="pl" class="text-neutral-400 text-sm sm:text-base mb-8 max-w-lg mx-auto font-light">
-          Masz pomysł na usprawnienie, zgłoszenie błędu lub chcesz pogadać o homelabie? Odpisuję osobiście.
-        </p>
-        <p data-lang="en" class="text-neutral-400 text-sm sm:text-base mb-8 max-w-lg mx-auto font-light">
-          Have an idea for a tool, feedback, or want to discuss self-hosting? I read and reply personally.
-        </p>
-        
-        <div class="inline-flex flex-col sm:flex-row items-center gap-4">
-          <a href="mailto:contact@patientone.uk" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-all flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-            contact@patientone.uk
-          </a>
-          <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl border border-neutral-800 bg-neutral-900 text-neutral-300 hover:text-white hover:border-neutral-700 text-sm font-mono transition-all">
-            github.com/patientone-io
+          <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white transition-colors underline underline-offset-4">
+            <span data-lang="pl">Śledź na GitHubie &rarr;</span>
+            <span data-lang="en">Follow on GitHub &rarr;</span>
           </a>
         </div>
+
       </div>
     </section>
+
+    <!-- Connect / Direct Contact -->
+    <section class="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div class="space-y-1">
+        <h2 class="text-base font-medium text-white">
+          <span data-lang="pl">Kontakt bezpośredni</span>
+          <span data-lang="en">Direct line</span>
+        </h2>
+        <p class="text-xs text-neutral-400 font-light">
+          <span data-lang="pl">Masz pomysł, feedback lub chcesz porozmawiać o homelabie?</span>
+          <span data-lang="en">Have an idea, feedback, or want to talk homelab?</span>
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="mailto:contact@patientone.uk" class="px-4 py-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] text-white text-xs font-mono border border-white/[0.08] transition-all flex items-center gap-2">
+          <svg class="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+          contact@patientone.uk
+        </a>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-neutral-800/80 bg-neutral-950 py-10">
-    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-neutral-500 font-mono">
-      <div>
-        © 2026 <span class="text-neutral-300 font-semibold">patientone</span>. All rights reserved.
+  <footer class="border-t border-white/[0.06] bg-[#09090b] py-8 mt-auto">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
+      <div class="flex items-center gap-2">
+        <span>© 2026 patientone.uk</span>
+        <span>•</span>
+        <span class="text-neutral-400">Local-first & Zero bloat</span>
       </div>
-      
-      <div class="flex items-center gap-6">
+
+      <div class="flex items-center gap-5">
         <a href="privacy.html" class="hover:text-neutral-300 transition-colors">
-          <span data-lang="pl">Polityka Prywatności</span>
-          <span data-lang="en">Privacy Policy</span>
+          <span data-lang="pl">Prywatność</span><span data-lang="en">Privacy</span>
         </a>
         <a href="terms.html" class="hover:text-neutral-300 transition-colors">
-          <span data-lang="pl">Regulamin</span>
-          <span data-lang="en">Terms of Service</span>
+          <span data-lang="pl">Regulamin</span><span data-lang="en">Terms</span>
         </a>
-        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-300 transition-colors">GitHub</a>
+        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-300 transition-colors">
+          GitHub
+        </a>
       </div>
     </div>
   </footer>
 
-  <!-- Language Switch Script -->
+  <!-- Scripts: Language switch, Category filter, Copy Email -->
   <script>
+    // Language Switcher
     function setLanguage(lang) {
       localStorage.setItem('pref_lang', lang);
       document.documentElement.lang = lang;
@@ -409,15 +460,51 @@
       const btnPl = document.getElementById('btn-pl');
       const btnEn = document.getElementById('btn-en');
       if (lang === 'pl') {
-        btnPl.className = "px-2.5 py-1 rounded font-medium transition-colors text-white bg-neutral-800";
-        btnEn.className = "px-2.5 py-1 rounded font-medium transition-colors text-neutral-400 hover:text-white";
+        btnPl.className = "px-2 py-0.5 rounded text-white bg-white/[0.1] font-medium transition-all";
+        btnEn.className = "px-2 py-0.5 rounded text-neutral-400 hover:text-neutral-200 font-medium transition-all";
       } else {
-        btnEn.className = "px-2.5 py-1 rounded font-medium transition-colors text-white bg-neutral-800";
-        btnPl.className = "px-2.5 py-1 rounded font-medium transition-colors text-neutral-400 hover:text-white";
+        btnEn.className = "px-2 py-0.5 rounded text-white bg-white/[0.1] font-medium transition-all";
+        btnPl.className = "px-2 py-0.5 rounded text-neutral-400 hover:text-neutral-200 font-medium transition-all";
       }
     }
 
-    // Auto-detect initial language
+    // Category Filter
+    function filterCategory(category) {
+      document.querySelectorAll('[data-category-btn]').forEach(btn => {
+        if (btn.getAttribute('data-category-btn') === category) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      const items = document.querySelectorAll('.project-item');
+      items.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Copy Email to clipboard with visual tooltip
+    function copyEmail() {
+      const email = 'contact@patientone.uk';
+      navigator.clipboard.writeText(email).then(() => {
+        const tooltip = document.getElementById('copied-tooltip');
+        tooltip.classList.remove('opacity-0');
+        tooltip.classList.add('opacity-100');
+        setTimeout(() => {
+          tooltip.classList.remove('opacity-100');
+          tooltip.classList.add('opacity-0');
+        }, 1800);
+      }).catch(err => {
+        console.error('Failed to copy', err);
+      });
+    }
+
+    // Initial language detection
     (function() {
       const saved = localStorage.getItem('pref_lang');
       if (saved === 'en' || saved === 'pl') {
@@ -427,7 +514,24 @@
         setLanguage(browserLang.startsWith('pl') ? 'pl' : 'en');
       }
     })();
-  </script>
 
+    // Interactive mouse spotlight for hero title
+    const heroTitleWrapper = document.getElementById('hero-title-wrapper');
+    const heroTitle = document.getElementById('hero-title');
+    if (heroTitleWrapper && heroTitle) {
+      heroTitleWrapper.addEventListener('mousemove', (e) => {
+        const rect = heroTitleWrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        heroTitle.style.setProperty('--mouse-x', `${x}px`);
+        heroTitle.style.setProperty('--mouse-y', `${y}px`);
+      });
+
+      heroTitleWrapper.addEventListener('mouseleave', () => {
+        heroTitle.style.setProperty('--mouse-x', '25%');
+        heroTitle.style.setProperty('--mouse-y', '50%');
+      });
+    }
+  </script>
 </body>
 </html>

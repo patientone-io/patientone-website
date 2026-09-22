@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html lang="pl" class="dark">
+<html lang="pl" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — patientone</title>
-  <meta name="description" content="Privacy Policy for tools, browser extensions, and projects created by patientone." />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  
+  <title>Polityka Prywatności — patientone</title>
+  <meta name="description" content="Polityka prywatności dla narzędzi, wtyczek do przeglądarki i projektów tworzonych przez patientone." />
   <meta name="theme-color" content="#09090b" />
+  
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="manifest" href="/site.webmanifest" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -21,176 +28,260 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Geist"', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'monospace'],
           }
         }
       }
     }
   </script>
+
   <style>
-    body { background-color: #09090b; color: #fafafa; }
-    .hidden-lang { display: none !important; }
+    body {
+      background-color: #09090b;
+      color: #ececf1;
+    }
+
+    code {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.8em !important;
+      padding: 0.12em 0.35em !important;
+      border-radius: 0.25rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      vertical-align: baseline;
+    }
+
+    .bg-grid {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 10%, #000 60%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 10%, #000 60%, transparent 100%);
+    }
+
+    [data-lang] {
+      transition: opacity 0.12s ease-in-out;
+    }
+    .hidden-lang {
+      display: none !important;
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+<body class="min-h-screen flex flex-col font-sans selection:bg-neutral-800 selection:text-white antialiased">
+
+  <!-- Ambient Grid Background -->
+  <div class="fixed inset-0 bg-grid pointer-events-none -z-10"></div>
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-blue-500/[0.03] blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
   <!-- Header -->
-  <header class="border-b border-neutral-800/80 bg-neutral-950/70 backdrop-blur-md sticky top-0 z-50">
+  <header class="border-b border-white/[0.06] bg-[#09090b]/80 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2 font-mono text-sm tracking-tight text-neutral-100 hover:text-blue-400 transition-colors">
-        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-        <span class="font-semibold">patientone</span><span class="text-neutral-500">.uk</span>
+      <a href="index.html" class="flex items-center gap-2 font-mono text-sm tracking-tight text-neutral-200 hover:text-white transition-colors group">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+        <span><span class="font-semibold text-neutral-100">patientone</span><span class="text-neutral-500 font-normal">.uk</span></span>
       </a>
 
-      <div class="flex items-center gap-4">
-        <!-- Language Switcher -->
-        <div class="flex items-center bg-neutral-900 border border-neutral-800 rounded-lg p-0.5 text-xs font-mono">
-          <button id="btn-pl" onclick="setLanguage('pl')" class="px-2.5 py-1 rounded font-medium transition-colors text-white bg-neutral-800">PL</button>
-          <button id="btn-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded font-medium transition-colors text-neutral-400 hover:text-white">EN</button>
+      <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Language Switcher [ PL | EN ] -->
+        <div class="flex items-center bg-white/[0.04] border border-white/[0.08] rounded-md p-0.5 text-xs font-mono">
+          <button id="btn-pl" onclick="setLanguage('pl')" class="px-2 py-0.5 rounded text-white bg-white/[0.1] font-medium transition-all">PL</button>
+          <button id="btn-en" onclick="setLanguage('en')" class="px-2 py-0.5 rounded text-neutral-400 hover:text-neutral-200 font-medium transition-all">EN</button>
         </div>
 
-        <a href="index.html" class="text-xs font-mono text-neutral-400 hover:text-neutral-200 transition-colors">
-          <span data-lang="pl">&larr; Wróć</span><span data-lang="en">&larr; Back</span>
+        <a href="index.html" class="text-xs font-mono text-neutral-400 hover:text-white transition-colors border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 rounded-md">
+          <span data-lang="pl">&larr; Wróć</span>
+          <span data-lang="en">&larr; Back</span>
         </a>
       </div>
     </div>
   </header>
 
   <!-- Content -->
-  <main class="flex-grow py-16 px-6">
-    <article class="max-w-3xl mx-auto prose prose-invert prose-neutral">
-      
-      <!-- POLISH VERSION -->
-      <div data-lang="pl" class="space-y-8 text-neutral-300 font-light leading-relaxed text-sm sm:text-base">
-        <div class="mb-10 pb-6 border-b border-neutral-800">
-          <span class="text-xs font-mono uppercase tracking-widest text-blue-400">Prywatność i RODO</span>
-          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-100 mt-2 mb-2">Polityka Prywatności</h1>
-          <p class="text-xs font-mono text-neutral-500">Ostatnia aktualizacja: Wrzesień 2026</p>
+  <main class="flex-grow max-w-3xl mx-auto w-full px-6 py-14">
+    
+    <!-- POLISH VERSION -->
+    <article data-lang="pl" class="space-y-10 text-neutral-300 font-light leading-relaxed text-sm sm:text-base">
+      <div class="pb-6 border-b border-white/[0.08] space-y-2">
+        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/[0.06] text-blue-400 text-xs font-mono">
+          Prywatność i Ochrona Danych
         </div>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">1. Podstawowa Zasada: Zero Inwigilacji</h2>
-          <p>
-            W projektach <strong>patientone</strong> dostępnych pod adresem <code>https://patientone.uk</code> oraz w rozszerzeniach publikowanych w Chrome Web Store, prywatność jest fundamentalnym założeniem architektury oprogramowania.
-          </p>
-          <p>
-            Nie tworzę oprogramowania, które żyje ze sprzedaży Twoich danych. Moje narzędzia działają w modelu <strong>Local-First</strong> — przetwarzają dane lokalnie w Twojej przeglądarce i nie wysyłają ich na żadne zewnętrzne serwery telemetryczne.
-          </p>
-        </section>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">2. Czego NIE zbieram i NIE przetwarzam</h2>
-          <ul class="list-disc pl-5 space-y-1.5 text-neutral-400">
-            <li><strong>Brak śledzenia historii:</strong> Nie monitoruję, nie profiluję ani nie zapisuję Twojej historii przeglądania.</li>
-            <li><strong>Brak analityki i trackerów:</strong> Nie umieszczam w kodzie wtyczek żadnych zewnętrznych skryptów analitycznych (Google Analytics, Hotjar, Facebook Pixel itp.).</li>
-            <li><strong>Brak zbierania danych z formularzy:</strong> Wtyczki nie czytają ani nie przesyłają zawartości Twojego schowka, haseł ani wpisywanego tekstu.</li>
-          </ul>
-        </section>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">3. Model BYOK (Bring Your Own Key) i integracje z AI / API</h2>
-          <p>
-            W narzędziach wykorzystujących integracje z zewnętrznymi modelami (np. OpenAI, Claude, Gemini) lub serwerami mediów (np. Jellyfin):
-          </p>
-          <ul class="list-disc pl-5 space-y-1.5 text-neutral-400">
-            <li><strong>Lokalne przechowywanie kluczy:</strong> Twoje klucze API i tokeny autoryzacyjne są zapisywane wyłącznie w bezpiecznym magazynie lokalnym Twojej przeglądarki (<code>chrome.storage.local</code>). Nigdy nie trafiają na serwery patientone.</li>
-            <li><strong>Bezpośrednie zapytania:</strong> Wszelkie zapytania API lecą bezpośrednio z Twojego komputera do skonfigurowanego przez Ciebie punktu końcowego (np. Twojego serwera Jellyfin lub API OpenAI).</li>
-          </ul>
-        </section>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">4. Płatności i Zakupy Licencji</h2>
-          <p>
-            Wszelkie płatności za licencje komercyjne lub subskrypcje są obsługiwane przez autoryzowanego operatora handlowego (*Merchant of Record*, np. LemonSqueezy lub Paddle). Nie przetwarzam ani nie przechowuję danych Twoich kart płatniczych. Operator płatności rozlicza podatki i odpowiada za bezpieczeństwo transakcji zgodnie z PCI-DSS oraz RODO.
-          </p>
-        </section>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">5. Kontakt w sprawach prywatności</h2>
-          <div class="p-4 rounded-xl border border-neutral-800 bg-neutral-900/60 font-mono text-sm text-neutral-300">
-            <p><strong>Autor / Wydawca:</strong> patientone</p>
-            <p><strong>Strona:</strong> <a href="https://patientone.uk" class="text-blue-400 hover:underline">https://patientone.uk</a></p>
-            <p><strong>E-mail:</strong> <a href="mailto:contact@patientone.uk" class="text-blue-400 hover:underline">contact@patientone.uk</a></p>
-          </div>
-        </section>
+        <h1 class="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
+          Polityka Prywatności
+        </h1>
+        <p class="text-xs font-mono text-neutral-500">
+          Ostatnia aktualizacja: Wrzesień 2026 • Entity: patientone
+        </p>
       </div>
 
-      <!-- ENGLISH VERSION (FOR GOOGLE AUDITORS & GLOBAL USERS) -->
-      <div data-lang="en" class="space-y-8 text-neutral-300 font-light leading-relaxed text-sm sm:text-base">
-        <div class="mb-10 pb-6 border-b border-neutral-800">
-          <span class="text-xs font-mono uppercase tracking-widest text-blue-400">Legal Compliance</span>
-          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-100 mt-2 mb-2">Privacy Policy</h1>
-          <p class="text-xs font-mono text-neutral-500">Last updated: September 2026</p>
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">1. Tożsamość i Filozofia: Zero Śledzenia</h2>
+        <p>
+          Wszystkie projekty udostępniane przez <strong>patientone</strong> (w tym serwis <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20 transition-colors">patientone.uk</a>, narzędzia open-source oraz wtyczki publikowane w Chrome Web Store) opierają się na jednej fundamentalnej zasadzie: <strong>brak jakiegokolwiek śledzenia użytkowników</strong>.
+        </p>
+        <p class="text-neutral-400 text-sm">
+          Jestem hobbystą i tworzę te narzędzia w pierwszej kolejności dla samego siebie. Nie prowadzę działalności reklamowej, nie handluję danymi i nie mam żadnego interesu w zbieraniu informacji o osobach korzystających z mojego oprogramowania.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">2. Czego NIE zbieram</h2>
+        <ul class="list-disc pl-5 space-y-2 text-neutral-400 text-sm">
+          <li><strong class="text-neutral-200">Brak analityki i trackerów:</strong> Serwis <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20 transition-colors">patientone.uk</a> oraz wtyczki nie zawierają żadnych skryptów telemetrycznych ani marketingowych (Google Analytics, piksele śledzące itp.).</li>
+          <li><strong class="text-neutral-200">Brak plików Cookies:</strong> Strona nie tworzy ani nie odczytuje żadnych ciasteczek śledzących. Preferencja wybranego języka jest przechowywana wyłącznie lokalnie w Twojej przeglądarce (<code>localStorage</code>).</li>
+          <li><strong class="text-neutral-200">Brak monitorowania historii:</strong> Rozszerzenia do przeglądarek nie rejestrują odwiedzanych stron, nie budują profilu użytkownika ani nie śledzą Twojej aktywności w sieci.</li>
+          <li><strong class="text-neutral-200">Brak dostępu do haseł i formularzy:</strong> Moje narzędzia nie mają dostępu do Twoich haseł, danych logowania ani wpisywanych formularzy.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">3. Model Local-First i Bezpieczeństwo Danych (BYOK)</h2>
+        <p>
+          Wszelkie narzędzia wymagające konfiguracji (np. adres Twojego prywatnego serwera Jellyfin, token bota Telegram czy klucze API) działają w modelu <strong>Local-First</strong>:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-neutral-400 text-sm">
+          <li>Wszystkie wprowadzone przez Ciebie dane konfiguracyjne są zapisywane wyłącznie w lokalnym magazynie Twojej przeglądarki (<code>chrome.storage.local</code>). Nigdy nie opuszczają Twojego urządzenia bez Twojej bezpośredniej dyspozycji.</li>
+          <li>Zapytania sieciowe (np. wysłanie prośby na Telegram czy zapytanie do Jellyfina) są wysyłane bezpośrednio z Twojego komputera do wskazanego serwera docelowego. <strong>Nie istnieją żadne serwery pośredniczące (proxy) prowadzone przez patientone.</strong></li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">4. Uprawnienia w rozszerzeniach przeglądarki (Chrome Web Store)</h2>
+        <p>
+          Zgodnie z polityką Google Chrome Web Store Developer Policy, rozszerzenia pytają wyłącznie o uprawnienia niezbędne do wykonania ich konkretnej funkcji:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-neutral-400 text-sm">
+          <li><code>storage</code> — służy wyłącznie do lokalnego zapisywania Twoich preferencji i adresów serwerów na dysku Twojego komputera.</li>
+          <li><code>activeTab</code> / uprawnienia do stron — wykorzystywane wyłącznie na obsługiwanych serwisach (np. Filmweb, IMDb, TMDb) w momencie ich przeglądania, by odczytać tytuł i rok produkcji filmu w celu sprawdzenia jego obecności w Twojej bibliotece.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">5. Płatności i Transakcje</h2>
+        <p class="text-neutral-400 text-sm">
+          Moje narzędzia i skrypty są projektami darmowymi lub open-source. Strona i wtyczki nie pobierają opłat, nie wymagają podawania danych kart kredytowych ani nie przetwarzają transakcji finansowych.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">6. Kontakt</h2>
+        <p class="text-neutral-400 text-sm">
+          W razie jakichkolwiek pytań dotyczących prywatności, kodu źródłowego lub działania narzędzi, możesz skontaktować się bezpośrednio z autorem:
+        </p>
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] font-mono text-xs text-neutral-300 space-y-1.5">
+          <p><span class="text-neutral-500">Entity:</span> patientone</p>
+          <p><span class="text-neutral-500">Strona:</span> <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">patientone.uk</a></p>
+          <p><span class="text-neutral-500">E-mail:</span> <a href="mailto:contact@patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">contact@patientone.uk</a></p>
+          <p><span class="text-neutral-500">GitHub:</span> <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">github.com/patientone-io</a></p>
         </div>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">1. Core Principle: Zero Surveillance</h2>
-          <p>
-            Across all projects under <strong>patientone</strong> accessible at <code>https://patientone.uk</code> and browser extensions distributed via the Chrome Web Store, privacy is an architectural guarantee rather than an afterthought.
-          </p>
-          <p>
-            I build software designed to solve practical problems without monetizing personal data. My tools follow a strict <strong>Local-First</strong> paradigm: operations run directly in your browser, with zero telemetry or background reporting.
-          </p>
-        </section>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">2. Data NOT Collected</h2>
-          <ul class="list-disc pl-5 space-y-1.5 text-neutral-400">
-            <li><strong>No Browsing Tracking:</strong> I do not track, profile, or log your browsing activity or visited URLs.</li>
-            <li><strong>No Third-Party Analytics:</strong> No tracking scripts, pixels, or ad networks (e.g. Google Analytics, Hotjar) are bundled into extensions.</li>
-            <li><strong>No Form / Clipboard Surveillance:</strong> Extensions do not inspect or transmit clipboard data or keystrokes.</li>
-          </ul>
-        </section>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">3. Bring Your Own Key (BYOK) & AI / API Processing</h2>
-          <p>
-            For tools connecting to external models (OpenAI, Claude, Gemini) or private servers (such as self-hosted Jellyfin):
-          </p>
-          <ul class="list-disc pl-5 space-y-1.5 text-neutral-400">
-            <li><strong>Local Credential Storage:</strong> Your API keys and authentication tokens are kept strictly within your browser's encrypted native storage (<code>chrome.storage.local</code>). They are never transmitted to patientone servers.</li>
-            <li><strong>Direct Client Communication:</strong> All API requests originate directly from your client machine to your specified endpoint.</li>
-          </ul>
-        </section>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">4. Payments & Billing</h2>
-          <p>
-            Purchases of software licenses or subscriptions are processed by an authorized Merchant of Record (e.g., LemonSqueezy or Paddle). I do not collect, process, or store financial credentials. The payment provider manages tax compliance, VAT, and billing in accordance with PCI-DSS and GDPR.
-          </p>
-        </section>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">5. Contact Information</h2>
-          <div class="p-4 rounded-xl border border-neutral-800 bg-neutral-900/60 font-mono text-sm text-neutral-300">
-            <p><strong>Publisher:</strong> patientone</p>
-            <p><strong>Website:</strong> <a href="https://patientone.uk" class="text-blue-400 hover:underline">https://patientone.uk</a></p>
-            <p><strong>Email:</strong> <a href="mailto:contact@patientone.uk" class="text-blue-400 hover:underline">contact@patientone.uk</a></p>
-          </div>
-        </section>
-      </div>
-
+      </section>
     </article>
+
+    <!-- ENGLISH VERSION (FOR GOOGLE AUDITORS & GLOBAL USERS) -->
+    <article data-lang="en" class="space-y-10 text-neutral-300 font-light leading-relaxed text-sm sm:text-base hidden-lang">
+      <div class="pb-6 border-b border-white/[0.08] space-y-2">
+        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/[0.06] text-blue-400 text-xs font-mono">
+          Privacy & Data Protection
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
+          Privacy Policy
+        </h1>
+        <p class="text-xs font-mono text-neutral-500">
+          Last updated: September 2026 • Entity: patientone
+        </p>
+      </div>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">1. Core Principle: Zero Surveillance</h2>
+        <p>
+          All software and tools provided by <strong>patientone</strong> (including the <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20 transition-colors">patientone.uk</a> website, open-source repositories, and browser extensions published on the Chrome Web Store) are built upon a strict foundation: <strong>zero user tracking and zero surveillance</strong>.
+        </p>
+        <p class="text-neutral-400 text-sm">
+          I am an independent hobbyist builder creating tools I actually need and use myself. I do not run advertising, do not sell user data, and have zero incentive to monitor or collect personal information.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">2. Data NOT Collected</h2>
+        <ul class="list-disc pl-5 space-y-2 text-neutral-400 text-sm">
+          <li><strong class="text-neutral-200">No Analytics or Trackers:</strong> Neither <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20 transition-colors">patientone.uk</a> nor my extensions contain third-party analytics scripts, marketing pixels, or telemetry collectors (e.g. Google Analytics).</li>
+          <li><strong class="text-neutral-200">No Cookies:</strong> The website does not store tracking cookies. Language preference is kept strictly inside your browser's local cache (<code>localStorage</code>).</li>
+          <li><strong class="text-neutral-200">No Browsing History Monitoring:</strong> Extensions do not log visited URLs, record browsing history, or build user behavior profiles.</li>
+          <li><strong class="text-neutral-200">No Access to Passwords or Forms:</strong> Tools do not read, inspect, or transmit passwords, credentials, or form input data.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">3. Local-First Architecture & Credentials (BYOK)</h2>
+        <p>
+          Any tools requiring credentials or server endpoints (such as your private Jellyfin server URL, Telegram bot tokens, or API keys) operate strictly under a <strong>Local-First</strong> model:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-neutral-400 text-sm">
+          <li>Configuration data is saved exclusively inside your browser's native secure local storage (<code>chrome.storage.local</code>). It never leaves your machine without your explicit action.</li>
+          <li>Network calls (e.g. sending a media request to Telegram or verifying availability on your private Jellyfin node) originate directly from your client machine to your specified target server. <strong>There are no intermediary proxy servers operated by patientone.</strong></li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">4. Chrome Web Store Permissions</h2>
+        <p>
+          In full accordance with the Google Chrome Web Store Developer Program Policies, extensions only request permissions strictly required for their core single purpose:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-neutral-400 text-sm">
+          <li><code>storage</code> — used strictly to save your settings, preferences, and server URLs on your local device.</li>
+          <li><code>activeTab</code> / host permissions — used strictly on supported movie/media platforms (such as Filmweb, IMDb, or TMDb) while browsing, to inspect the title and year of the item and verify availability on your home server.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">5. Payments & Billing</h2>
+        <p class="text-neutral-400 text-sm">
+          The software and scripts provided here are free or open-source. The website and extensions do not collect payments, do not request credit card details, and do not process commercial transactions.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">6. Contact & Inquiries</h2>
+        <p class="text-neutral-400 text-sm">
+          For any questions regarding privacy, source code, or technical implementation, you can reach out directly:
+        </p>
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] font-mono text-xs text-neutral-300 space-y-1.5">
+          <p><span class="text-neutral-500">Entity:</span> patientone</p>
+          <p><span class="text-neutral-500">Website:</span> <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">patientone.uk</a></p>
+          <p><span class="text-neutral-500">Email:</span> <a href="mailto:contact@patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">contact@patientone.uk</a></p>
+          <p><span class="text-neutral-500">GitHub:</span> <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">github.com/patientone-io</a></p>
+        </div>
+      </section>
+    </article>
+
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-neutral-800/80 bg-neutral-950 py-8">
-    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono">
-      <div>© 2026 patientone.</div>
-      <div class="flex items-center gap-6">
-        <a href="index.html" class="hover:text-neutral-300">
+  <footer class="border-t border-white/[0.06] bg-[#09090b] py-8 mt-auto">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
+      <div class="flex items-center gap-2">
+        <span>© 2026 patientone.uk</span>
+        <span>•</span>
+        <span class="text-neutral-400">Local-first & Zero bloat</span>
+      </div>
+
+      <div class="flex items-center gap-5">
+        <a href="index.html" class="hover:text-neutral-300 transition-colors">
           <span data-lang="pl">Strona Główna</span><span data-lang="en">Home</span>
         </a>
-        <a href="terms.html" class="hover:text-neutral-300">
+        <a href="terms.html" class="hover:text-neutral-300 transition-colors">
           <span data-lang="pl">Regulamin</span><span data-lang="en">Terms</span>
         </a>
-        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-300">GitHub</a>
+        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-300 transition-colors">
+          GitHub
+        </a>
       </div>
     </div>
   </footer>
 
-  <!-- Language Switch Script -->
+  <!-- Language Switcher Script -->
   <script>
     function setLanguage(lang) {
       localStorage.setItem('pref_lang', lang);
@@ -207,11 +298,11 @@
       const btnPl = document.getElementById('btn-pl');
       const btnEn = document.getElementById('btn-en');
       if (lang === 'pl') {
-        btnPl.className = "px-2.5 py-1 rounded font-medium transition-colors text-white bg-neutral-800";
-        btnEn.className = "px-2.5 py-1 rounded font-medium transition-colors text-neutral-400 hover:text-white";
+        btnPl.className = "px-2 py-0.5 rounded text-white bg-white/[0.1] font-medium transition-all";
+        btnEn.className = "px-2 py-0.5 rounded text-neutral-400 hover:text-neutral-200 font-medium transition-all";
       } else {
-        btnEn.className = "px-2.5 py-1 rounded font-medium transition-colors text-white bg-neutral-800";
-        btnPl.className = "px-2.5 py-1 rounded font-medium transition-colors text-neutral-400 hover:text-white";
+        btnEn.className = "px-2 py-0.5 rounded text-white bg-white/[0.1] font-medium transition-all";
+        btnPl.className = "px-2 py-0.5 rounded text-neutral-400 hover:text-neutral-200 font-medium transition-all";
       }
     }
 

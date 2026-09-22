@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="pl" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service — patientone labs</title>
-  <meta name="description" content="Terms of Service for software, browser extensions, and digital products provided by patientone labs." />
-  <meta name="theme-color" content="#0a0a0a" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  
+  <title>Regulamin — patientone</title>
+  <meta name="description" content="Regulamin korzystania z oprogramowania, rozszerzeń i skryptów udostępnianych przez patientone." />
+  <meta name="theme-color" content="#09090b" />
+  
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="manifest" href="/site.webmanifest" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -21,120 +28,284 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Geist"', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'monospace'],
           }
         }
       }
     }
   </script>
+
   <style>
-    body { background-color: #09090b; color: #fafafa; }
+    body {
+      background-color: #09090b;
+      color: #ececf1;
+    }
+
+    code {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.8em !important;
+      padding: 0.12em 0.35em !important;
+      border-radius: 0.25rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      vertical-align: baseline;
+    }
+
+    .bg-grid {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 10%, #000 60%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 10%, #000 60%, transparent 100%);
+    }
+
+    [data-lang] {
+      transition: opacity 0.12s ease-in-out;
+    }
+    .hidden-lang {
+      display: none !important;
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+<body class="min-h-screen flex flex-col font-sans selection:bg-neutral-800 selection:text-white antialiased">
+
+  <!-- Ambient Grid Background -->
+  <div class="fixed inset-0 bg-grid pointer-events-none -z-10"></div>
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-blue-500/[0.03] blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
   <!-- Header -->
-  <header class="border-b border-neutral-800/80 bg-neutral-950/70 backdrop-blur-md sticky top-0 z-50">
+  <header class="border-b border-white/[0.06] bg-[#09090b]/80 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2 font-mono text-sm tracking-tight text-neutral-100 hover:text-blue-400 transition-colors">
-        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-        <span class="font-semibold">patientone</span><span class="text-neutral-500">labs</span>
+      <a href="index.html" class="flex items-center gap-2 font-mono text-sm tracking-tight text-neutral-200 hover:text-white transition-colors group">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+        <span><span class="font-semibold text-neutral-100">patientone</span><span class="text-neutral-500 font-normal">.uk</span></span>
       </a>
-      <a href="index.html" class="text-xs font-mono text-neutral-400 hover:text-neutral-200 transition-colors">&larr; Back to Home</a>
+
+      <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Language Switcher [ PL | EN ] -->
+        <div class="flex items-center bg-white/[0.04] border border-white/[0.08] rounded-md p-0.5 text-xs font-mono">
+          <button id="btn-pl" onclick="setLanguage('pl')" class="px-2 py-0.5 rounded text-white bg-white/[0.1] font-medium transition-all">PL</button>
+          <button id="btn-en" onclick="setLanguage('en')" class="px-2 py-0.5 rounded text-neutral-400 hover:text-neutral-200 font-medium transition-all">EN</button>
+        </div>
+
+        <a href="index.html" class="text-xs font-mono text-neutral-400 hover:text-white transition-colors border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 rounded-md">
+          <span data-lang="pl">&larr; Wróć</span>
+          <span data-lang="en">&larr; Back</span>
+        </a>
+      </div>
     </div>
   </header>
 
   <!-- Content -->
-  <main class="flex-grow py-16 px-6">
-    <article class="max-w-3xl mx-auto prose prose-invert prose-neutral">
-      <div class="mb-10 pb-8 border-b border-neutral-800">
-        <span class="text-xs font-mono uppercase tracking-widest text-blue-400">Legal Agreement</span>
-        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-100 mt-2 mb-3">Terms of Service</h1>
-        <p class="text-sm font-mono text-neutral-500">Last updated: September 2026</p>
+  <main class="flex-grow max-w-3xl mx-auto w-full px-6 py-14">
+    
+    <!-- POLISH VERSION -->
+    <article data-lang="pl" class="space-y-10 text-neutral-300 font-light leading-relaxed text-sm sm:text-base">
+      <div class="pb-6 border-b border-white/[0.08] space-y-2">
+        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/[0.06] text-blue-400 text-xs font-mono">
+          Warunki Użytkowania
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
+          Regulamin Serwisu i Narzędzi
+        </h1>
+        <p class="text-xs font-mono text-neutral-500">
+          Ostatnia aktualizacja: Wrzesień 2026 • Entity: patientone
+        </p>
       </div>
 
-      <div class="space-y-8 text-neutral-300 font-light leading-relaxed text-sm sm:text-base">
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">1. Acceptance of Terms</h2>
-          <p>
-            By accessing or using the website at <code>https://patientone.uk</code>, downloading our browser extensions, or purchasing licenses for software provided by <strong>patientone labs</strong> ("we", "us", "our"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not use our services.
-          </p>
-        </section>
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">1. Zakres i Charakter Oprogramowania</h2>
+        <p>
+          Serwis <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20 transition-colors">patientone.uk</a>, wtyczki do przeglądarek oraz repozytoria kodu są udostępniane przez niezależnego twórcę działającego pod pseudonimem <strong>patientone</strong>.
+        </p>
+        <p class="text-neutral-400 text-sm">
+          Wszystkie projekty mają charakter hobbystyczny. Zostały stworzone na potrzeby własne autora i są udostępniane publicznie bezpłatnie społeczności internetowej. Korzystanie z nich oznacza akceptację niniejszych warunków.
+        </p>
+      </section>
 
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">2. Software License & Usage</h2>
-          <p>
-            When purchasing a license or downloading software from patientone labs:
-          </p>
-          <ul class="list-disc pl-5 space-y-1.5 text-neutral-400">
-            <li>We grant you a personal, non-exclusive, non-transferable license to use the software according to the purchased tier (single-user license, lifetime deal, or active subscription).</li>
-            <li>You may not decompile, reverse-engineer, redistribute, or resell the proprietary binaries or license keys unless explicitly permitted under an open-source license.</li>
-          </ul>
-        </section>
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">2. Klauzula „AS-IS” (Brak Gwarancji)</h2>
+        <p>
+          Oprogramowanie jest dostarczane w stanie <strong>„takim, w jakim jest” (AS-IS)</strong> oraz <strong>„w miarę dostępności” (AS-AVAILABLE)</strong>, bez jakiejkolwiek gwarancji — wyraźnej lub dorozumianej.
+        </p>
+        <p class="text-neutral-400 text-sm">
+          Autor nie gwarantuje, że narzędzia będą działać nieprzerwanie, bezbłędnie lub że zachowają pełną zgodność z zewnętrznymi serwisami (takimi jak Filmweb, IMDb, TMDb czy Telegram), które mogą w dowolnym momencie zmienić swoją strukturę techniczną lub API.
+        </p>
+      </section>
 
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">3. Bring-Your-Own-Key (BYOK) & Third-Party AI Services</h2>
-          <p>
-            Certain software features require third-party artificial intelligence API access (e.g., OpenAI, Anthropic, Google Gemini). 
-          </p>
-          <ul class="list-disc pl-5 space-y-1.5 text-neutral-400">
-            <li>You are solely responsible for obtaining and maintaining your own API keys.</li>
-            <li>You are responsible for any charges or token costs billed directly by the respective third-party AI provider.</li>
-            <li>You agree to comply with the acceptable use policies and terms of each respective AI provider.</li>
-          </ul>
-        </section>
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">3. Ograniczenie Odpowiedzialności</h2>
+        <p class="text-neutral-400 text-sm">
+          W najszerszym zakresie dopuszczalnym przez obowiązujące prawo, autor (<strong>patientone</strong>) nie ponosi odpowiedzialności za jakiekolwiek bezpośrednie lub pośrednie szkody, utratę danych, niestabilność systemu operacyjnego, awarie sprzętu ani jakiekolwiek inne skutki wynikające z instalacji, uruchomienia lub korzystania z udostępnionego oprogramowania i skryptów (w tym modyfikacji ACPI, skryptów jądra Linuksa czy automatyzacji homelaba).
+        </p>
+        <p class="text-neutral-400 text-sm font-normal text-neutral-300">
+          Z oprogramowania, wtyczek i skryptów korzystasz wyłącznie na własne ryzyko i odpowiedzialność.
+        </p>
+      </section>
 
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">4. Payments, Refunds, and Billing</h2>
-          <p>
-            Commercial sales of digital licenses and subscriptions are facilitated via our authorized Merchant of Record (such as LemonSqueezy, Paddle, or Stripe).
-          </p>
-          <ul class="list-disc pl-5 space-y-1.5 text-neutral-400">
-            <li>Billing terms, recurring charges, and applicable VAT/sales taxes are displayed clearly at checkout.</li>
-            <li>Refund requests for digital software licenses are handled in accordance with our Merchant of Record’s standard policy or within 14 days of purchase upon valid justification.</li>
-          </ul>
-        </section>
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">4. Prawa Autorskie i Licencje Open Source</h2>
+        <p class="text-neutral-400 text-sm">
+          Kod źródłowy projektów jest udostępniany publicznie w serwisie GitHub (<a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">github.com/patientone-io</a>) na warunkach licencji <strong>MIT</strong> (chyba że w danym repozytorium wyraźnie wskazano inną licencję). Masz pełne prawo do przeglądania, forkowania i adaptowania kodu zgodnie z warunkami przypisanej licencji.
+        </p>
+      </section>
 
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">5. Disclaimer of Warranties ("As-Is")</h2>
-          <p>
-            The software and website are provided on an <strong>"as-is"</strong> and <strong>"as-available"</strong> basis without warranties of any kind, either express or implied. patientone labs does not warrant that the software will be uninterrupted, error-free, or fully compatible with third-party web platforms that undergo breaking interface changes.
-          </p>
-        </section>
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">5. Brak Komercyjnego Wsparcia (SLA)</h2>
+        <p class="text-neutral-400 text-sm">
+          Udostępniane narzędzia są bezpłatne i nie stanowią odpłatnej usługi abonamentowej. Autor nie zapewnia komercyjnego wsparcia technicznego, gwarancji naprawy błędów ani określonego czasu reakcji (SLA). Wszelkie zgłoszenia (Issues) i propozycje zmian (Pull Requests) są rozpatrywane na zasadach dobrej woli w miarę dostępnego czasu wolnego.
+        </p>
+      </section>
 
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">6. Limitation of Liability</h2>
-          <p>
-            To the maximum extent permitted by applicable law, patientone labs shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, data, or business opportunities arising out of or related to your use of our software.
-          </p>
-        </section>
-
-        <section class="space-y-3">
-          <h2 class="text-xl font-semibold text-neutral-100">7. Contact</h2>
-          <p>
-            For questions or legal correspondence regarding these Terms of Service:
-          </p>
-          <div class="p-4 rounded-xl border border-neutral-800 bg-neutral-900/60 font-mono text-sm text-neutral-300">
-            <p><strong>Entity:</strong> patientone labs</p>
-            <p><strong>Email:</strong> <a href="mailto:contact@patientone.uk" class="text-blue-400 hover:underline">contact@patientone.uk</a></p>
-          </div>
-        </section>
-      </div>
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">6. Kontakt</h2>
+        <p class="text-neutral-400 text-sm">
+          W przypadku pytań dotyczących niniejszego regulaminu możesz skontaktować się pod adresem:
+        </p>
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] font-mono text-xs text-neutral-300 space-y-1.5">
+          <p><span class="text-neutral-500">Entity:</span> patientone</p>
+          <p><span class="text-neutral-500">Strona:</span> <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">patientone.uk</a></p>
+          <p><span class="text-neutral-500">E-mail:</span> <a href="mailto:contact@patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">contact@patientone.uk</a></p>
+          <p><span class="text-neutral-500">GitHub:</span> <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">github.com/patientone-io</a></p>
+        </div>
+      </section>
     </article>
+
+    <!-- ENGLISH VERSION (FOR GLOBAL USERS & AUDITORS) -->
+    <article data-lang="en" class="space-y-10 text-neutral-300 font-light leading-relaxed text-sm sm:text-base hidden-lang">
+      <div class="pb-6 border-b border-white/[0.08] space-y-2">
+        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full border border-blue-500/20 bg-blue-500/[0.06] text-blue-400 text-xs font-mono">
+          Terms & Conditions
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-semibold tracking-tight text-white">
+          Terms of Service
+        </h1>
+        <p class="text-xs font-mono text-neutral-500">
+          Last updated: September 2026 • Entity: patientone
+        </p>
+      </div>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">1. Scope and Nature of Software</h2>
+        <p>
+          The <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20 transition-colors">patientone.uk</a> website, browser extensions, and code repositories are published by an independent creator under the pseudonym <strong>patientone</strong>.
+        </p>
+        <p class="text-neutral-400 text-sm">
+          All projects are hobbyist creations developed primarily for the author's own daily use and shared freely with the community. By using, downloading, or running these tools, you agree to these Terms of Service.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">2. Disclaimer of Warranties ("AS-IS")</h2>
+        <p>
+          The software, extensions, and scripts are provided strictly on an <strong>"AS-IS"</strong> and <strong>"AS-AVAILABLE"</strong> basis, without warranties of any kind, whether express or implied.
+        </p>
+        <p class="text-neutral-400 text-sm">
+          The author does not warrant that the software will operate uninterrupted or error-free, or remain continuously compatible with third-party web platforms (such as Filmweb, IMDb, TMDb, or Telegram) that may update or modify their technical layout or APIs at any time.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">3. Limitation of Liability</h2>
+        <p class="text-neutral-400 text-sm">
+          To the fullest extent permitted by applicable law, <strong>patientone</strong> shall not be held liable for any direct, indirect, incidental, special, or consequential damages, loss of data, system instability, or hardware failure resulting from the installation, execution, or use of the software, tools, or scripts (including ACPI table overrides, Linux kernel scripts, or homelab automations).
+        </p>
+        <p class="text-neutral-400 text-sm font-normal text-neutral-300">
+          You use and execute all tools, extensions, and scripts entirely at your own risk.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">4. Open Source Licensing & Copyright</h2>
+        <p class="text-neutral-400 text-sm">
+          The source code for these projects is made publicly available on GitHub (<a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">github.com/patientone-io</a>) under the terms of the <strong>MIT License</strong> (unless a different license is explicitly specified in a particular repository). You are free to inspect, fork, and adapt the code in compliance with the respective license.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">5. No Commercial Support or SLA</h2>
+        <p class="text-neutral-400 text-sm">
+          These tools are provided free of charge and do not constitute a paid service. The author does not offer commercial technical support, guaranteed bug turnaround times, or Service Level Agreements (SLAs). Issues and pull requests are welcomed and reviewed on a voluntary, best-effort basis.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-medium text-white tracking-tight">6. Contact Information</h2>
+        <p class="text-neutral-400 text-sm">
+          For any questions or legal inquiries regarding these Terms of Service:
+        </p>
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] font-mono text-xs text-neutral-300 space-y-1.5">
+          <p><span class="text-neutral-500">Entity:</span> patientone</p>
+          <p><span class="text-neutral-500">Website:</span> <a href="https://patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">patientone.uk</a></p>
+          <p><span class="text-neutral-500">Email:</span> <a href="mailto:contact@patientone.uk" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">contact@patientone.uk</a></p>
+          <p><span class="text-neutral-500">GitHub:</span> <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/20">github.com/patientone-io</a></p>
+        </div>
+      </section>
+    </article>
+
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-neutral-800/80 bg-neutral-950 py-8">
-    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono">
-      <div>© 2026 patientone labs.</div>
-      <div class="flex items-center gap-6">
-        <a href="index.html" class="hover:text-neutral-300">Home</a>
-        <a href="privacy.html" class="hover:text-neutral-300">Privacy Policy</a>
-        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-300">GitHub</a>
+  <footer class="border-t border-white/[0.06] bg-[#09090b] py-8 mt-auto">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
+      <div class="flex items-center gap-2">
+        <span>© 2026 patientone.uk</span>
+        <span>•</span>
+        <span class="text-neutral-400">Local-first & Zero bloat</span>
+      </div>
+
+      <div class="flex items-center gap-5">
+        <a href="index.html" class="hover:text-neutral-300 transition-colors">
+          <span data-lang="pl">Strona Główna</span><span data-lang="en">Home</span>
+        </a>
+        <a href="privacy.html" class="hover:text-neutral-300 transition-colors">
+          <span data-lang="pl">Prywatność</span><span data-lang="en">Privacy</span>
+        </a>
+        <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-300 transition-colors">
+          GitHub
+        </a>
       </div>
     </div>
   </footer>
+
+  <!-- Language Switcher Script -->
+  <script>
+    function setLanguage(lang) {
+      localStorage.setItem('pref_lang', lang);
+      document.documentElement.lang = lang;
+      
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        if (el.getAttribute('data-lang') === lang) {
+          el.classList.remove('hidden-lang');
+        } else {
+          el.classList.add('hidden-lang');
+        }
+      });
+
+      const btnPl = document.getElementById('btn-pl');
+      const btnEn = document.getElementById('btn-en');
+      if (lang === 'pl') {
+        btnPl.className = "px-2 py-0.5 rounded text-white bg-white/[0.1] font-medium transition-all";
+        btnEn.className = "px-2 py-0.5 rounded text-neutral-400 hover:text-neutral-200 font-medium transition-all";
+      } else {
+        btnEn.className = "px-2 py-0.5 rounded text-white bg-white/[0.1] font-medium transition-all";
+        btnPl.className = "px-2 py-0.5 rounded text-neutral-400 hover:text-neutral-200 font-medium transition-all";
+      }
+    }
+
+    (function() {
+      const saved = localStorage.getItem('pref_lang');
+      if (saved === 'en' || saved === 'pl') {
+        setLanguage(saved);
+      } else {
+        const browserLang = (navigator.language || '').toLowerCase();
+        setLanguage(browserLang.startsWith('pl') ? 'pl' : 'en');
+      }
+    })();
+  </script>
 
 </body>
 </html>
