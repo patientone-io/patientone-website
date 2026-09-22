@@ -109,8 +109,8 @@
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400 text-xs font-mono">
             <span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-            <span data-lang="pl">Indie Builder • Homelab & Vibe Coding</span>
-            <span data-lang="en">Indie Builder • Homelab & Vibe Coding</span>
+            <span data-lang="pl">Indie Builder & Homelab Tinkerer • 🇵🇱 🇬🇧</span>
+            <span data-lang="en">Indie Builder & Homelab Tinkerer • 🇵🇱 🇬🇧</span>
           </div>
           <p class="text-xs font-mono text-neutral-500 mt-1.5 flex items-center gap-1">
             <span>github.com/patientone-io</span>
@@ -245,34 +245,34 @@
           </div>
         </div>
 
-        <!-- Project 3: Contextual AI BYOK Utilities -->
+        <!-- Project 3: legion-nvidia-off -->
         <div class="p-6 rounded-2xl border border-neutral-800/80 bg-neutral-900/40 hover:border-neutral-700 hover:bg-neutral-900/70 transition-all flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-mono px-2.5 py-1 rounded bg-neutral-800 text-neutral-300 border border-neutral-700">
-                <span data-lang="pl">W przygotowaniu</span>
-                <span data-lang="en">In Development</span>
-              </span>
-              <span class="text-xs font-mono text-neutral-500">BYOK Model</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Linux / ACPI</span>
+              <a href="https://github.com/patientone-io/legion-nvidia-off" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-neutral-200 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
             </div>
-            <h3 class="text-xl font-semibold text-neutral-100 mb-2">
-              <span data-lang="pl">Narzędzia Kontekstowe AI</span>
-              <span data-lang="en">Contextual AI Micro-Tools</span>
+            <h3 class="text-xl font-semibold text-neutral-100 mb-2 font-mono">
+              legion-nvidia-off
             </h3>
             
             <p data-lang="pl" class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
-              Wyspecjalizowane mikro-rozszerzenia do ekstrakcji, podsumowywania i analizy gęstych danych w przeglądarce. Wpinasz swój klucz API (OpenAI/Claude/Gemini) — zapytania idą wprost do dostawcy, bez pośredników.
+              Sprzętowe odcięcie zasilania dedykowanej karty NVIDIA (stan <strong>D3cold</strong>) dla laptopa <strong>Lenovo Legion 5 Pro (82JQ)</strong> pod Linuksem. Nadpisywanie tabel ACPI SSDT i odblokowanie flagi <code class="text-xs font-mono text-neutral-300 bg-neutral-800 px-1 py-0.5 rounded">OPCE = 0x03</code> redukuje pobór mocy do 0W i wydłuża pracę na baterii do 6–8h.
             </p>
             <p data-lang="en" class="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
-              Specialized browser extensions for deep data extraction, synthesis, and workflow acceleration. Powered by BYOK — calls go directly from your browser to AI providers, zero middleman fees.
+              Hardware-level power cutoff (<strong>D3cold</strong> state) for NVIDIA dGPU on <strong>Lenovo Legion 5 Pro (82JQ)</strong> under Linux. Early ACPI SSDT table overrides and OEM <code class="text-xs font-mono text-neutral-300 bg-neutral-800 px-1 py-0.5 rounded">OPCE = 0x03</code> unblocking drops dGPU draw to 0W and extends battery life to 6–8h.
             </p>
           </div>
           <div class="flex items-center gap-4 text-xs font-mono text-neutral-500 pt-4 border-t border-neutral-800/60">
-            <span>Zero Surveillance</span>
+            <span>ACPI SSDT</span>
             <span>•</span>
-            <span>OpenRouter / Gemini</span>
+            <span>D3cold (0W)</span>
             <span>•</span>
-            <span class="text-neutral-400">patientone labs</span>
+            <a href="https://github.com/patientone-io/legion-nvidia-off" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">GitHub &rarr;</a>
           </div>
         </div>
       </div>
