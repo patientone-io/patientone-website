@@ -74,6 +74,7 @@ Otwórz `http://localhost:8080` w przeglądarce.
 
 ---
 
-## 📄 Licencja / License
+## 📄 License / Licencja
 
-Projekt udostępniany na licencji **MIT**. Szczegóły w pliku [LICENSE](LICENSE) (jeśli dołączony) lub na warunkach open-source.
+- **EN:** Released under the **MIT License**. See [LICENSE](LICENSE) for details.
+- **PL:** Projekt udostępniany na licencji **MIT**. Szczegóły w pliku [LICENSE](LICENSE).
