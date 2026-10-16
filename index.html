@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>patientone - Linux, homelab &amp; web tools</title>
+  <meta name="description" content="Narzędzia do homelaba i codziennej pracy pod Linuksem. Rozszerzenia przeglądarki, Docker, audio i kod open-source.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="canonical" href="https://patientone.uk/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="patientone - Linux, homelab &amp; web tools">
+  <meta property="og:description" content="Narzędzia do homelaba i codziennej pracy pod Linuksem. Rozszerzenia przeglądarki, Docker, audio i kod open-source.">
+  <meta property="og:url" content="https://patientone.uk/">
+  <meta property="og:image" content="https://patientone.uk/avatar.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/language.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main"><span data-lang="pl">Przejdź do treści</span><span data-lang="en">Skip to content</span></a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="wordmark" href="./" aria-label="patientone.uk"><span class="status-dot" aria-hidden="true"></span>patientone<span class="muted">.uk</span></a>
+      <div class="header-actions">
+        <a class="header-link" href="https://github.com/patientone-io">GitHub <span aria-hidden="true">↗</span></a>
+        <div class="language-switch" role="group" aria-label="Język / Language" hidden>
+          <button type="button" data-set-language="pl" aria-pressed="true" aria-label="Polski">PL</button>
+          <button type="button" data-set-language="en" aria-pressed="false" aria-label="English">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="shell">
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="identity">
+        <img src="avatar.png" width="72" height="72" alt="Avatar patientone">
+        <div><p class="eyebrow"><span data-lang="pl">Homelab &amp; Web • Buduję dla siebie</span><span data-lang="en">Homelab &amp; Web • Tools I actually use</span></p>
+        <h1 id="intro-title">patientone<span class="accent">.</span></h1></div>
+      </div>
+      <p class="intro-lead"><span data-lang="pl">Buduję narzędzia do swojego homelaba i codziennej pracy pod Linuksem.</span><span data-lang="en">I build tools for my homelab and everyday life on Linux.</span></p>
+      <p class="intro-description"><span data-lang="pl">Tutaj udostępniam kod.</span><span data-lang="en">This is where I share the code.</span></p>
+      <a class="text-link" href="#projects"><span data-lang="pl">Zobacz, co zbudowałem</span><span data-lang="en">See what I’ve built</span> <span aria-hidden="true">↓</span></a>
+    </section>
+    <section id="projects" class="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <h2 id="projects-title"><span data-lang="pl">Wybrane projekty</span><span data-lang="en">Selected projects</span></h2>
+        <span class="section-note"><span data-lang="pl">Kod na GitHubie</span><span data-lang="en">Source on GitHub</span></span>
+      </div>
+      <article class="project">
+        <div class="project-heading">
+          <h3><a href="https://github.com/patientone-io/jellyfin-checker">Jellyfin Checker<span class="project-arrow" aria-hidden="true">↗</span></a></h3>
+          <span class="project-category"><span data-lang="pl">Rozszerzenie przeglądarki</span><span data-lang="en">Browser extension</span></span>
+        </div>
+        <p class="project-description"><span data-lang="pl">Sprawdź na Filmwebie, IMDb i TMDb, czy film lub serial jest już w Twoim Jellyfinie.</span><span data-lang="en">Check whether a film or show is in your Jellyfin library while browsing Filmweb, IMDb or TMDb.</span></p>
+        <p class="project-detail"><span data-lang="pl">Łączy się bezpośrednio z Twoim serwerem, pozwala wysyłać prośby przez Telegrama i działa też jako userscript.</span><span data-lang="en">Connects directly to your server, supports requests via Telegram, and works as standalone userscripts.</span></p>
+        <p class="project-stack">Jellyfin · JavaScript · Manifest V3</p>
+      </article>
+      <article class="project">
+        <div class="project-heading">
+          <h3><a href="https://github.com/patientone-io/diun-tap">DiunTap<span class="project-arrow" aria-hidden="true">↗</span></a></h3>
+          <span class="project-category"><span data-lang="pl">Homelab</span><span data-lang="en">Homelab</span></span>
+        </div>
+        <p class="project-description"><span data-lang="pl">Aktualizuj kontenery Docker z Telegrama, kiedy sam o tym zdecydujesz.</span><span data-lang="en">Update Docker containers from Telegram, when you choose to.</span></p>
+        <p class="project-detail"><span data-lang="pl">Powiadomienia z DIUN, changelogi, healthcheck i rollback. Działa przez Long Polling bez wystawiania portów.</span><span data-lang="en">DIUN alerts, GitHub release notes, healthchecks and rollback via Long Polling without exposed ports.</span></p>
+        <p class="project-stack">Python · Docker Compose · Telegram</p>
+      </article>
+      <article class="project">
+        <div class="project-heading">
+          <h3><a href="https://github.com/patientone-io/opusbook">opusbook<span class="project-arrow" aria-hidden="true">↗</span></a></h3>
+          <span class="project-category"><span data-lang="pl">Audio / CLI</span><span data-lang="en">Audio / CLI</span></span>
+        </div>
+        <p class="project-description"><span data-lang="pl">Konwertuj audiobooki i podcasty do Opus, żeby zajmowały mniej miejsca.</span><span data-lang="en">Convert audiobooks and podcasts to Opus to save storage space.</span></p>
+        <p class="project-detail"><span data-lang="pl">Zmniejsza rozmiar plików o 60-75%, zachowując metadane, okładki i rozdziały pod Audiobookshelf.</span><span data-lang="en">Reduces file sizes by 60-75%, preserving metadata, covers and chapters for Audiobookshelf.</span></p>
+        <p class="project-stack">Python · FFmpeg · Opus</p>
+      </article>
+      <article class="project">
+        <div class="project-heading">
+          <h3><a href="https://github.com/patientone-io/legion-nvidia-off">legion-nvidia-off<span class="project-arrow" aria-hidden="true">↗</span></a></h3>
+          <span class="project-category"><span data-lang="pl">Linux / sprzęt</span><span data-lang="en">Linux / hardware</span></span>
+        </div>
+        <p class="project-description"><span data-lang="pl">Odetnij zasilanie dedykowanej karty NVIDIA w Lenovo Legion 5 Pro (82JQ) pod Linuksem.</span><span data-lang="en">Power off the dedicated NVIDIA GPU on a Lenovo Legion 5 Pro (82JQ) running Linux.</span></p>
+        <p class="project-detail"><span data-lang="pl">Tablica ACPI SSDT odcinająca zasilanie dGPU (D3cold / 0W). Wydłuża czas na baterii z ~3 do 6-8 godzin.</span><span data-lang="en">Custom ACPI SSDT table cutting dGPU draw to 0W (D3cold), extending battery life from ~3h to 6-8 hours.</span></p>
+        <p class="project-stack">Linux · ACPI · D3cold</p>
+      </article>
+      <p class="projects-note"><span data-lang="pl">Bez telemetrii. Narzędzia uruchamiasz u siebie, a integracje konfigurujesz własnymi kluczami.</span><span data-lang="en">No telemetry. Run the tools yourself and use your own keys for integrations.</span></p>
+    </section>
+    <section class="contact" aria-labelledby="contact-title">
+      <div>
+        <h2 id="contact-title"><span data-lang="pl">Pogadajmy</span><span data-lang="en">Get in touch</span></h2>
+        <p><span data-lang="pl">Używasz któregoś narzędzia? Masz pomysł albo coś nie działa?</span><span data-lang="en">Using one of these tools? Have an idea or found something broken?</span></p>
+      </div>
+      <a class="text-link contact-link" href="mailto:contact@patientone.uk">contact@patientone.uk <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <footer class="site-footer shell">
+    <span>© 2026 patientone</span>
+    <nav aria-label="Prywatność i warunki / Privacy and terms">
+      <a href="privacy.html"><span data-lang="pl">Prywatność</span><span data-lang="en">Privacy</span></a>
+      <a href="terms.html"><span data-lang="pl">Regulamin</span><span data-lang="en">Terms</span></a>
+    </nav>
+  </footer>
+</body>
+</html>

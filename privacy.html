@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prywatność / Privacy - patientone</title>
+  <meta name="description" content="Polityka prywatności narzędzi i strony patientone. Privacy policy for patientone tools and website.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="canonical" href="https://patientone.uk/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Prywatność / Privacy - patientone">
+  <meta property="og:description" content="Polityka prywatności narzędzi i strony patientone. Privacy policy for patientone tools and website.">
+  <meta property="og:url" content="https://patientone.uk/privacy.html">
+  <meta property="og:image" content="https://patientone.uk/avatar.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/language.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main"><span data-lang="pl">Przejdź do treści</span><span data-lang="en">Skip to content</span></a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="wordmark" href="./" aria-label="patientone.uk"><span class="status-dot" aria-hidden="true"></span>patientone<span class="muted">.uk</span></a>
+      <div class="header-actions">
+        <a class="header-link" href="https://github.com/patientone-io">GitHub <span aria-hidden="true">↗</span></a>
+        <div class="language-switch" role="group" aria-label="Język / Language" hidden>
+          <button type="button" data-set-language="pl" aria-pressed="true" aria-label="Polski">PL</button>
+          <button type="button" data-set-language="en" aria-pressed="false" aria-label="English">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="shell legal">
+    <a class="text-link back-link" href="./">← <span data-lang="pl">Strona główna</span><span data-lang="en">Home</span></a>
+<article data-lang="pl">
+      <div>
+        <div>
+          Prywatność i Ochrona Danych
+        </div>
+        <h1>
+          Polityka Prywatności
+        </h1>
+        <p>
+          Ostatnia aktualizacja: Wrzesień 2026 • Entity: patientone
+        </p>
+      </div>
+
+      <section>
+        <h2>1. Tożsamość i Filozofia: Zero Śledzenia</h2>
+        <p>
+          Wszystkie projekty udostępniane przez <strong>patientone</strong> (w tym serwis <a href="https://patientone.uk">patientone.uk</a>, narzędzia open-source oraz wtyczki publikowane w Chrome Web Store) opierają się na jednej fundamentalnej zasadzie: <strong>brak jakiegokolwiek śledzenia użytkowników</strong>.
+        </p>
+        <p>
+          Jestem hobbystą i tworzę te narzędzia w pierwszej kolejności dla samego siebie. Nie prowadzę działalności reklamowej, nie handluję danymi i nie mam żadnego interesu w zbieraniu informacji o osobach korzystających z mojego oprogramowania.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Czego NIE zbieram</h2>
+        <ul>
+          <li><strong>Brak analityki i trackerów:</strong> Serwis <a href="https://patientone.uk">patientone.uk</a> oraz wtyczki nie zawierają żadnych skryptów telemetrycznych ani marketingowych (Google Analytics, piksele śledzące itp.).</li>
+          <li><strong>Brak plików Cookies:</strong> Strona nie tworzy ani nie odczytuje żadnych ciasteczek śledzących. Preferencja wybranego języka jest przechowywana wyłącznie lokalnie w Twojej przeglądarce (<code>localStorage</code>).</li>
+          <li><strong>Brak monitorowania historii:</strong> Rozszerzenia do przeglądarek nie rejestrują odwiedzanych stron, nie budują profilu użytkownika ani nie śledzą Twojej aktywności w sieci.</li>
+          <li><strong>Brak dostępu do haseł i formularzy:</strong> Moje narzędzia nie mają dostępu do Twoich haseł, danych logowania ani wpisywanych formularzy.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Model Local-First i Bezpieczeństwo Danych (BYOK)</h2>
+        <p>
+          Wszelkie narzędzia wymagające konfiguracji (np. adres Twojego prywatnego serwera Jellyfin, token bota Telegram czy klucze API) działają w modelu <strong>Local-First</strong>:
+        </p>
+        <ul>
+          <li>Wszystkie wprowadzone przez Ciebie dane konfiguracyjne są zapisywane wyłącznie w lokalnym magazynie Twojej przeglądarki (<code>chrome.storage.local</code>). Nigdy nie opuszczają Twojego urządzenia bez Twojej bezpośredniej dyspozycji.</li>
+          <li>Zapytania sieciowe (np. wysłanie prośby na Telegram czy zapytanie do Jellyfina) są wysyłane bezpośrednio z Twojego komputera do wskazanego serwera docelowego. <strong>Nie istnieją żadne serwery pośredniczące (proxy) prowadzone przez patientone.</strong></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Uprawnienia w rozszerzeniach przeglądarki (Chrome Web Store)</h2>
+        <p>
+          Zgodnie z polityką Google Chrome Web Store Developer Policy, rozszerzenia pytają wyłącznie o uprawnienia niezbędne do wykonania ich konkretnej funkcji:
+        </p>
+        <ul>
+          <li><code>storage</code> - służy wyłącznie do lokalnego zapisywania Twoich preferencji i adresów serwerów na dysku Twojego komputera.</li>
+          <li><code>activeTab</code> / uprawnienia do stron - wykorzystywane wyłącznie na obsługiwanych serwisach (np. Filmweb, IMDb, TMDb) w momencie ich przeglądania, by odczytać tytuł i rok produkcji filmu w celu sprawdzenia jego obecności w Twojej bibliotece.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>5. Płatności i Transakcje</h2>
+        <p>
+          Moje narzędzia i skrypty są projektami darmowymi lub open-source. Strona i wtyczki nie pobierają opłat, nie wymagają podawania danych kart kredytowych ani nie przetwarzają transakcji finansowych.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Kontakt</h2>
+        <p>
+          W razie jakichkolwiek pytań dotyczących prywatności, kodu źródłowego lub działania narzędzi, możesz skontaktować się bezpośrednio z autorem:
+        </p>
+        <div>
+          <p><span>Entity:</span> patientone</p>
+          <p><span>Strona:</span> <a href="https://patientone.uk">patientone.uk</a></p>
+          <p><span>E-mail:</span> <a href="mailto:contact@patientone.uk">contact@patientone.uk</a></p>
+          <p><span>GitHub:</span> <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer">github.com/patientone-io</a></p>
+        </div>
+      </section>
+    </article>
+<article data-lang="en">
+      <div>
+        <div>
+          Privacy & Data Protection
+        </div>
+        <h1>
+          Privacy Policy
+        </h1>
+        <p>
+          Last updated: September 2026 • Entity: patientone
+        </p>
+      </div>
+
+      <section>
+        <h2>1. Core Principle: Zero Surveillance</h2>
+        <p>
+          All software and tools provided by <strong>patientone</strong> (including the <a href="https://patientone.uk">patientone.uk</a> website, open-source repositories, and browser extensions published on the Chrome Web Store) are built upon a strict foundation: <strong>zero user tracking and zero surveillance</strong>.
+        </p>
+        <p>
+          I am an independent hobbyist builder creating tools I actually need and use myself. I do not run advertising, do not sell user data, and have zero incentive to monitor or collect personal information.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Data NOT Collected</h2>
+        <ul>
+          <li><strong>No Analytics or Trackers:</strong> Neither <a href="https://patientone.uk">patientone.uk</a> nor my extensions contain third-party analytics scripts, marketing pixels, or telemetry collectors (e.g. Google Analytics).</li>
+          <li><strong>No Cookies:</strong> The website does not store tracking cookies. Language preference is kept strictly inside your browser's local cache (<code>localStorage</code>).</li>
+          <li><strong>No Browsing History Monitoring:</strong> Extensions do not log visited URLs, record browsing history, or build user behavior profiles.</li>
+          <li><strong>No Access to Passwords or Forms:</strong> Tools do not read, inspect, or transmit passwords, credentials, or form input data.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Local-First Architecture & Credentials (BYOK)</h2>
+        <p>
+          Any tools requiring credentials or server endpoints (such as your private Jellyfin server URL, Telegram bot tokens, or API keys) operate strictly under a <strong>Local-First</strong> model:
+        </p>
+        <ul>
+          <li>Configuration data is saved exclusively inside your browser's native secure local storage (<code>chrome.storage.local</code>). It never leaves your machine without your explicit action.</li>
+          <li>Network calls (e.g. sending a media request to Telegram or verifying availability on your private Jellyfin node) originate directly from your client machine to your specified target server. <strong>There are no intermediary proxy servers operated by patientone.</strong></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Chrome Web Store Permissions</h2>
+        <p>
+          In full accordance with the Google Chrome Web Store Developer Program Policies, extensions only request permissions strictly required for their core single purpose:
+        </p>
+        <ul>
+          <li><code>storage</code> - used strictly to save your settings, preferences, and server URLs on your local device.</li>
+          <li><code>activeTab</code> / host permissions - used strictly on supported movie/media platforms (such as Filmweb, IMDb, or TMDb) while browsing, to inspect the title and year of the item and verify availability on your home server.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>5. Payments & Billing</h2>
+        <p>
+          The software and scripts provided here are free or open-source. The website and extensions do not collect payments, do not request credit card details, and do not process commercial transactions.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Contact & Inquiries</h2>
+        <p>
+          For any questions regarding privacy, source code, or technical implementation, you can reach out directly:
+        </p>
+        <div>
+          <p><span>Entity:</span> patientone</p>
+          <p><span>Website:</span> <a href="https://patientone.uk">patientone.uk</a></p>
+          <p><span>Email:</span> <a href="mailto:contact@patientone.uk">contact@patientone.uk</a></p>
+          <p><span>GitHub:</span> <a href="https://github.com/patientone-io" target="_blank" rel="noopener noreferrer">github.com/patientone-io</a></p>
+        </div>
+      </section>
+    </article>
+  </main>
+  <footer class="site-footer shell">
+    <span>© 2026 patientone</span>
+    <nav aria-label="Prywatność i warunki / Privacy and terms">
+      <a href="privacy.html"><span data-lang="pl">Prywatność</span><span data-lang="en">Privacy</span></a>
+      <a href="terms.html"><span data-lang="pl">Regulamin</span><span data-lang="en">Terms</span></a>
+    </nav>
+  </footer>
+</body>
+</html>
