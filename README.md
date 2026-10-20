@@ -1,18 +1,26 @@
+# 🌐 patientone.uk
+
+> **EN:** Source code for **[patientone.uk](https://patientone.uk)** — personal website showcasing my open-source homelab, Linux, and browser projects.  
+> **PL:** Kod źródłowy strony **[patientone.uk](https://patientone.uk)** — wizytówki z moimi projektami open-source do homelaba, Linuksa i przeglądarki.
+
 [ 🇬🇧 English ](#-english) • [ 🇵🇱 Polski ](#-polski)
 
-# patientone.uk
+[![Website](https://img.shields.io/badge/Website-patientone.uk-blue)](https://patientone.uk)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> My tools, source code and contact details in one place.
->
-> Moje narzędzia, kod źródłowy i kontakt w jednym miejscu.
+---
 
 ## 🇬🇧 English
 
-Source for [patientone.uk](https://patientone.uk), my personal website with selected homelab, Linux and browser projects.
+A fast, zero-dependency static website built with plain HTML, CSS, and a lightweight client-side language switcher (`PL` / `EN`).
 
-Static HTML, shared CSS and a small language switcher. Geist and Geist Mono are served locally. It works without a build step. All page assets are local; there are no analytics or tracking cookies.
+### ✨ Highlights
 
-### Local preview
+- **Zero build step** — pure HTML, CSS, and vanilla JavaScript that can be served by any static web server (Caddy, Nginx, GitHub Pages, Cloudflare Pages).
+- **100% self-hosted assets & zero tracking** — Geist and Geist Mono fonts are served locally from `assets/fonts/`; no external CDNs, analytics, or tracking cookies.
+- **Instant bilingual switching** — both Polish and English content live side by side using `data-lang="pl"` and `data-lang="en"` attributes, switched via the root element and persisted in `localStorage` (falls back gracefully to Polish when JavaScript is disabled).
+
+### 🚀 Local Preview
 
 ```bash
 git clone https://github.com/patientone-io/patientone-website.git
@@ -20,25 +28,31 @@ cd patientone-website
 python3 -m http.server 8080
 ```
 
-Open [localhost:8080](http://localhost:8080). The site can be served by any static web server. Editing HTML, CSS or JavaScript and refreshing the page is enough to preview changes.
+Open **[http://localhost:8080](http://localhost:8080)** in your browser. Edit any HTML, CSS, or JS file and refresh the page to see your changes immediately.
 
-### Structure
+### 📁 Project Structure
 
-- `index.html` - introduction, projects and contact.
-- `privacy.html`, `terms.html` - privacy policy and terms in Polish and English.
-- `assets/site.css` - shared styles and responsive layout.
-- `assets/language.js` - PL/EN selection, saved in `localStorage` when available. Without JavaScript, the site displays Polish.
-- `assets/fonts/` - Geist and Geist Mono with their SIL Open Font Licenses.
+| File / Folder | Description |
+| :--- | :--- |
+| `index.html` | Main landing page (about, open-source projects showcase, contact) |
+| `privacy.html` & `terms.html` | Privacy policy and terms of service (bilingual PL/EN) |
+| `assets/site.css` | Shared stylesheet and responsive layout |
+| `assets/language.js` | Lightweight PL/EN language switcher (`localStorage` persistence) |
+| `assets/fonts/` | Self-hosted `Geist` and `Geist Mono` web fonts (SIL Open Font License) |
 
-Keep both languages together in each HTML file using `data-lang="pl"` and `data-lang="en"`. Shared CSS displays the language selected on the root element. No dependencies to install.
+---
 
 ## 🇵🇱 Polski
 
-Kod [patientone.uk](https://patientone.uk), mojej strony z wybranymi projektami do homelaba, Linuksa i przeglądarki.
+Szybka, lekka strona statyczna napisana w czystym HTML, CSS i JavaScripcie, z przełącznikiem wersji językowej (`PL` / `EN`).
 
-Statyczny HTML, wspólny CSS i niewielki przełącznik języka. Fonty Geist i Geist Mono są serwowane lokalnie. Działa bez procesu budowania. Wszystkie zasoby strony są lokalne; nie ma analityki ani ciasteczek śledzących.
+### ✨ Główne cechy
 
-### Podgląd lokalny
+- **Brak procesu budowania (zero-build)** — czysty HTML, CSS i vanilla JS; stronę można zaserwować z dowolnego serwera plików statycznych (Caddy, Nginx, GitHub Pages, Cloudflare Pages).
+- **100% lokalnych zasobów i zero telemetrii** — fonty Geist oraz Geist Mono są serwowane bezpośrednio z katalogu `assets/fonts/`; brak zewnętrznych CDN-ów, skryptów analitycznych i ciasteczek śledzących.
+- **Natychmiastowy przełącznik języka** — obie wersje językowe znajdują się w tych samych plikach HTML (`data-lang="pl"` oraz `data-lang="en"`), a wybrany język jest zapamiętywany w `localStorage` (bez włączonego JavaScriptu strona domyślnie wyświetla się po polsku).
+
+### 🚀 Podgląd lokalny
 
 ```bash
 git clone https://github.com/patientone-io/patientone-website.git
@@ -46,17 +60,19 @@ cd patientone-website
 python3 -m http.server 8080
 ```
 
-Otwórz [localhost:8080](http://localhost:8080). Do hostowania wystarczy dowolny serwer plików statycznych. Po zmianie HTML, CSS lub JavaScriptu odśwież stronę, żeby zobaczyć efekt.
+Otwórz **[http://localhost:8080](http://localhost:8080)** w przeglądarce. Po edycji plików HTML, CSS lub JS wystarczy odświeżyć kartę.
 
-### Struktura
+### 📁 Struktura plików
 
-- `index.html` - wstęp, projekty i kontakt.
-- `privacy.html`, `terms.html` - polityka prywatności i regulamin po polsku i angielsku.
-- `assets/site.css` - wspólne style i układ responsywny.
-- `assets/language.js` - wybór PL/EN, zapisywany w `localStorage`, gdy jest dostępny. Bez JavaScriptu strona wyświetla się po polsku.
-- `assets/fonts/` - Geist i Geist Mono wraz z licencjami SIL Open Font License.
+| Plik / Katalog | Opis |
+| :--- | :--- |
+| `index.html` | Strona główna (opis, lista projektów open-source, kontakt) |
+| `privacy.html` i `terms.html` | Polityka prywatności oraz regulamin (w wersji PL i EN) |
+| `assets/site.css` | Wspólne arkusze stylów i responsywny układ |
+| `assets/language.js` | Skrypt przełączania języka PL/EN z zapisem w `localStorage` |
+| `assets/fonts/` | Lokalnie hostowane fonty `Geist` oraz `Geist Mono` (licencja SIL Open Font License) |
 
-Obie wersje językowe są w tym samym pliku HTML, oznaczone przez `data-lang="pl"` i `data-lang="en"`. Wspólny CSS wyświetla język ustawiony na głównym elemencie dokumentu. Nie trzeba instalować zależności.
+---
 
 ## 👤 Author & Contact / Autor i kontakt
 
@@ -64,5 +80,5 @@ Obie wersje językowe są w tym samym pliku HTML, oznaczone przez `data-lang="pl
 
 ## 📄 License / Licencja
 
-- **EN:** Code released under the [MIT License](LICENSE). Bundled fonts use the SIL Open Font License; see `assets/fonts/`.
-- **PL:** Kod na [licencji MIT](LICENSE). Dołączone fonty są objęte licencją SIL Open Font License; szczegóły w `assets/fonts/`.
+- **EN:** Code released under the [MIT License](LICENSE). Bundled fonts use the SIL Open Font License (see `assets/fonts/`).
+- **PL:** Kod udostępniany na [licencji MIT](LICENSE). Dołączone fonty są objęte licencją SIL Open Font License (szczegóły w `assets/fonts/`).
