@@ -1,0 +1,3 @@
+# Local design exploration, captures and tool state
+.impeccable/*
+!.impeccable/design.json

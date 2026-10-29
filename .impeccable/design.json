@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T10:46:54.431160Z",
+  "title": "Design System: patientone",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "tonalRamp": [
+          "oklch(15.0% 0.0023 214.45)",
+          "oklch(26.0% 0.0039 214.45)",
+          "oklch(38.0% 0.0052 214.45)",
+          "oklch(49.0% 0.0064 214.45)",
+          "oklch(61.0% 0.0064 214.45)",
+          "oklch(72.0% 0.0055 214.45)",
+          "oklch(84.0% 0.0039 214.45)",
+          "oklch(95.0% 0.0013 214.45)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Warm White",
+        "tonalRamp": [
+          "oklch(15.0% 0.0018 67.76)",
+          "oklch(26.0% 0.0031 67.76)",
+          "oklch(38.0% 0.0041 67.76)",
+          "oklch(49.0% 0.0052 67.76)",
+          "oklch(61.0% 0.0052 67.76)",
+          "oklch(72.0% 0.0044 67.76)",
+          "oklch(84.0% 0.0031 67.76)",
+          "oklch(95.0% 0.0010 67.76)"
+        ]
+      },
+      "secondary": {
+        "role": "neutral",
+        "displayName": "Soft Silver",
+        "tonalRamp": [
+          "oklch(15.0% 0.0032 214.35)",
+          "oklch(26.0% 0.0055 214.35)",
+          "oklch(38.0% 0.0073 214.35)",
+          "oklch(49.0% 0.0091 214.35)",
+          "oklch(61.0% 0.0091 214.35)",
+          "oklch(72.0% 0.0077 214.35)",
+          "oklch(84.0% 0.0055 214.35)",
+          "oklch(95.0% 0.0018 214.35)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Slate Grey",
+        "tonalRamp": [
+          "oklch(15.0% 0.0028 228.90)",
+          "oklch(26.0% 0.0048 228.90)",
+          "oklch(38.0% 0.0065 228.90)",
+          "oklch(49.0% 0.0081 228.90)",
+          "oklch(61.0% 0.0081 228.90)",
+          "oklch(72.0% 0.0069 228.90)",
+          "oklch(84.0% 0.0048 228.90)",
+          "oklch(95.0% 0.0016 228.90)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Mineral Mint",
+        "tonalRamp": [
+          "oklch(15.0% 0.0310 159.46)",
+          "oklch(26.0% 0.0531 159.46)",
+          "oklch(38.0% 0.0708 159.46)",
+          "oklch(49.0% 0.0885 159.46)",
+          "oklch(61.0% 0.0885 159.46)",
+          "oklch(72.0% 0.0752 159.46)",
+          "oklch(84.0% 0.0531 159.46)",
+          "oklch(95.0% 0.0177 159.46)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Light Mineral Mint",
+        "tonalRamp": [
+          "oklch(15.0% 0.0256 157.39)",
+          "oklch(26.0% 0.0440 157.39)",
+          "oklch(38.0% 0.0586 157.39)",
+          "oklch(49.0% 0.0733 157.39)",
+          "oklch(61.0% 0.0733 157.39)",
+          "oklch(72.0% 0.0623 157.39)",
+          "oklch(84.0% 0.0440 157.39)",
+          "oklch(95.0% 0.0147 157.39)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Charcoal Line",
+        "tonalRamp": [
+          "oklch(15.0% 0.0039 205.77)",
+          "oklch(26.0% 0.0066 205.77)",
+          "oklch(38.0% 0.0089 205.77)",
+          "oklch(49.0% 0.0111 205.77)",
+          "oklch(61.0% 0.0111 205.77)",
+          "oklch(72.0% 0.0094 205.77)",
+          "oklch(84.0% 0.0066 205.77)",
+          "oklch(95.0% 0.0022 205.77)"
+        ]
+      },
+      "tag-background": {
+        "role": "neutral",
+        "displayName": "Dark Slate",
+        "tonalRamp": [
+          "oklch(15.0% 0.0041 214.52)",
+          "oklch(26.0% 0.0071 214.52)",
+          "oklch(38.0% 0.0094 214.52)",
+          "oklch(49.0% 0.0118 214.52)",
+          "oklch(61.0% 0.0118 214.52)",
+          "oklch(72.0% 0.0100 214.52)",
+          "oklch(84.0% 0.0071 214.52)",
+          "oklch(95.0% 0.0024 214.52)"
+        ]
+      },
+      "divider": {
+        "role": "neutral",
+        "displayName": "Steel Divider",
+        "tonalRamp": [
+          "oklch(15.0% 0.0047 203.37)",
+          "oklch(26.0% 0.0081 203.37)",
+          "oklch(38.0% 0.0107 203.37)",
+          "oklch(49.0% 0.0134 203.37)",
+          "oklch(61.0% 0.0134 203.37)",
+          "oklch(72.0% 0.0114 203.37)",
+          "oklch(84.0% 0.0081 203.37)",
+          "oklch(95.0% 0.0027 203.37)"
+        ]
+      },
+      "scrollbar": {
+        "role": "neutral",
+        "displayName": "Grey Green",
+        "tonalRamp": [
+          "oklch(15.0% 0.0097 179.67)",
+          "oklch(26.0% 0.0166 179.67)",
+          "oklch(38.0% 0.0221 179.67)",
+          "oklch(49.0% 0.0276 179.67)",
+          "oklch(61.0% 0.0276 179.67)",
+          "oklch(72.0% 0.0235 179.67)",
+          "oklch(84.0% 0.0166 179.67)",
+          "oklch(95.0% 0.0055 179.67)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Introduction",
+        "purpose": "Large introductory heading; see Layout for responsive overrides."
+      },
+      "intro-description": {
+        "displayName": "Introductory closing sentence",
+        "purpose": "Matches the introductory size with muted color and lighter weight."
+      },
+      "headline": {
+        "displayName": "Section headline",
+        "purpose": "Selected-project heading."
+      },
+      "title": {
+        "displayName": "Project title",
+        "purpose": "Project names."
+      },
+      "body": {
+        "displayName": "Project body",
+        "purpose": "Project descriptions and repository actions."
+      },
+      "label": {
+        "displayName": "Technology label",
+        "purpose": "Passive technology tags."
+      },
+      "navigation": {
+        "displayName": "Navigation",
+        "purpose": "Header links and language controls."
+      },
+      "legal-body": {
+        "displayName": "Legal reading text",
+        "purpose": "Longer legal content with relaxed line spacing."
+      },
+      "code": {
+        "displayName": "Inline code",
+        "purpose": "Technical fragments in legal copy."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "repository-arrow",
+        "value": "transform .18s ease-out",
+        "purpose": "Repository arrow translates by 2px, -2px on hover; transition is removed for reduced motion."
+      },
+      {
+        "name": "page-scroll",
+        "value": "smooth",
+        "purpose": "Native anchor scrolling; switches to auto for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop",
+        "value": "1200px"
+      },
+      {
+        "name": "stacked-project-action",
+        "value": "900px"
+      },
+      {
+        "name": "phone",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Language control",
+      "kind": "button",
+      "refersTo": "language-button",
+      "description": "Transparent PL/EN controls with an underlined selected state; static preview shows PL selected.",
+      "html": "<div class=\"ds-language\" role=\"group\" aria-label=\"Language\"><button type=\"button\" aria-pressed=\"true\">PL</button><span aria-hidden=\"true\">/</span><button type=\"button\" aria-pressed=\"false\">EN</button></div>",
+      "css": ".ds-language{display:flex;align-items:center;gap:.6rem;padding-left:1.5rem;border-left:1px solid #657071;color:var(--secondary);font-family:\"Geist\",system-ui,sans-serif;}.ds-language button{font-family:\"Geist\",system-ui,sans-serif;font-size:1.125rem;line-height:1.5;min-width:32px;min-height:44px;padding:.2rem 0;border:0;color:var(--secondary);background:transparent;position:relative;cursor:pointer}.ds-language button::after{content:\"\";position:absolute;bottom:.2rem;inset-inline:0;height:1px;background:transparent}.ds-language button:hover{color:var(--accent-hover)}.ds-language button[aria-pressed=\"true\"]{color:var(--accent)}.ds-language button[aria-pressed=\"true\"]::after{background:currentColor}.ds-language button:focus-visible{outline:2px solid var(--accent);outline-offset:5px;border-radius:2px;}@media(max-width:600px){.ds-language{padding-left:.8rem;gap:.25rem}.ds-language button{font-size:1rem;min-width:28px}}"
+    },
+    {
+      "name": "Project row",
+      "kind": "button",
+      "refersTo": "project-row",
+      "description": "One native link for the entire project row; title, description and action share one destination and one keyboard stop.",
+      "html": "<a class=\"ds-project\" href=\"https://github.com/patientone-io/opusbook\" aria-labelledby=\"ds-opusbook-title\"><div><h3 id=\"ds-opusbook-title\">opusbook</h3><p>Convert audiobooks and podcasts to Opus.</p></div><span aria-hidden=\"true\">View on GitHub</span></a>",
+      "css": ".ds-project{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:1.5rem;padding:.75rem 0;min-height:7.25rem;color:var(--text);font-family:\"Geist\",system-ui,sans-serif;text-decoration:none}.ds-project h3{margin:0;font-size:1.625rem;font-weight:600;letter-spacing:-.02em}.ds-project p{margin:.1rem 0 0;font-size:1.125rem;color:var(--secondary)}.ds-project>span{color:var(--accent);font-size:1rem}.ds-project:hover h3,.ds-project:focus-visible h3{color:var(--accent-hover);text-decoration:underline;text-underline-offset:.2em}.ds-project:focus-visible{outline:2px solid var(--accent);outline-offset:5px}@media(max-width:600px){.ds-project{grid-template-columns:1fr}.ds-project h3{font-size:1.375rem}.ds-project p{font-size:1rem}}"
+    },
+    {
+      "name": "Technology tag",
+      "kind": "chip",
+      "refersTo": "technology-tag",
+      "description": "A passive technology label, without action or hover states.",
+      "html": "<span class=\"ds-tag\">Python</span>",
+      "css": ".ds-tag{font-family:\"Geist\",system-ui,sans-serif;display:inline-block;color:var(--secondary);background:var(--tag-background);border-radius:var(--radius);padding:.12rem .6rem;font-size:.875rem;line-height:1.5}@media(max-width:600px){.ds-tag{font-size:.8125rem;padding:.15rem .5rem}}"
+    },
+    {
+      "name": "Header navigation",
+      "kind": "nav",
+      "refersTo": "header-navigation",
+      "description": "Shared home link with circular avatar and wordmark, paired with GitHub navigation.",
+      "html": "<nav class=\"ds-header\" aria-label=\"Main\"><a class=\"ds-wordmark\" href=\"./\"><img class=\"ds-avatar\" src=\"avatar.png\" width=\"36\" height=\"36\" alt=\"\">patientone</a><a class=\"ds-header-link\" href=\"https://github.com/patientone-io\">GitHub</a></nav>",
+      "css": ".ds-header{font-family:\"Geist\",system-ui,sans-serif;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:4.75rem;color:var(--text)}.ds-header a{text-decoration:none}.ds-wordmark{display:inline-flex;align-items:center;gap:.625rem;font-size:1.625rem;font-weight:600;letter-spacing:-.025em;line-height:1.5}.ds-header-link{display:inline-flex;align-items:center;min-height:44px;font-size:1.125rem;line-height:1.5;white-space:nowrap}.ds-header a:hover{color:var(--accent-hover)}.ds-header a:focus-visible{outline:2px solid var(--accent);outline-offset:5px;border-radius:2px;}@media(max-width:600px){.ds-header{min-height:5rem;flex-wrap:wrap;padding-block:.6rem;gap:.2rem .8rem}.ds-wordmark{display:inline-flex;align-items:center;gap:.625rem;font-size:1.375rem}.ds-header-link{font-size:1rem}}.ds-avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0}@media(max-width:600px){.ds-avatar{width:32px;height:32px}.ds-wordmark{gap:.5rem}}"
+    },
+    {
+      "name": "Contact close",
+      "kind": "custom",
+      "refersTo": "contact-link",
+      "description": "Warm white envelope and contact heading with a mint email link.",
+      "html": "<section class=\"ds-contact\"><svg class=\"ds-envelope\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"1\"/><path d=\"m3 5 9 8 9-8\"/></svg><div><h2>Contact</h2><a href=\"mailto:contact@patientone.uk\">contact@patientone.uk</a></div></section>",
+      "css": ".ds-contact{font-family:\"Geist\",system-ui,sans-serif;display:flex;align-items:center;gap:2.25rem;min-width:0;color:var(--text);line-height:1.5}.ds-envelope{width:2.75rem;height:2.75rem;flex-shrink:0}.ds-contact h2{margin:0;font-size:1.125rem;font-weight:500;line-height:1.2}.ds-contact a{color:var(--accent);font-size:1.125rem;overflow-wrap:anywhere;text-decoration:none;text-underline-offset:.25em}.ds-contact a:hover{color:var(--accent-hover);text-decoration:underline}.ds-contact a:focus-visible{outline:2px solid var(--accent);outline-offset:5px;border-radius:2px;}@media(max-width:600px){.ds-contact{gap:1rem}.ds-envelope{width:2.25rem;height:2.25rem}.ds-contact h2,.ds-contact a{font-size:1.0625rem}}"
+    },
+    {
+      "name": "Legal inline link",
+      "kind": "custom",
+      "refersTo": "legal-link",
+      "description": "An always-underlined link within the legal reading column.",
+      "html": "<p class=\"ds-legal-copy\">Read the <a href=\"privacy.html\">privacy policy</a>.</p>",
+      "css": ".ds-legal-copy{font-family:\"Geist\",system-ui,sans-serif;margin:0;font-size:1.0625rem;line-height:1.7;color:var(--secondary)}.ds-legal-copy a{color:var(--accent);text-decoration:underline;text-underline-offset:.25em;overflow-wrap:anywhere}.ds-legal-copy a:hover{color:var(--accent-hover)}.ds-legal-copy a:focus-visible{outline:2px solid var(--accent);outline-offset:5px;border-radius:2px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Personal Tool Collection",
+    "overview": "A continuous graphite ground, warm white humanist type and mineral mint links give this personal collection a calm, direct presence. Moderately scaled introductory type establishes the voice; compact project rows make the work easy to scan.\n\nThe same typography, header and footer continue into narrower legal documents. Hierarchy comes from type, spacing and thin separators. Interaction stays quiet: a selected-language underline, visible keyboard focus and a small repository-arrow response.",
+    "keyCharacteristics": [
+      "One continuous dark ground with a single mint accent.",
+      "Large humanist introduction and compact, separated project rows.",
+      "Shared typography and navigation across portfolio and legal pages.",
+      "Responsive text flow and direct repository and contact links."
+    ],
+    "rules": [
+      {
+        "name": "Continuous Ground",
+        "body": "Keep the page and project rows on the background color; use separators and spacing to distinguish rows.",
+        "section": "colors"
+      },
+      {
+        "name": "Shared Voice",
+        "body": "Use Geist for display, body and controls; reserve the system monospace stack for inline code.",
+        "section": "typography"
+      },
+      {
+        "name": "Flat Surface",
+        "body": "Use no shadows or gradients; hierarchy comes from type, spacing, dividers and the darker tag surface.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the shared dark palette and Geist typography on legal pages.",
+      "Do keep project descriptions, technology tags and repository actions visually associated as the layout narrows.",
+      "Do preserve the mint selected-language underline and visible keyboard focus.",
+      "Do let Polish and English copy wrap without clipping or fixed text heights.",
+      "Do use compact inline SVG geometry with currentColor for project and action icons.",
+      "Do make each complete project row one native link, with one keyboard stop and a clear title hover/focus state."
+    ],
+    "donts": [
+      "Don't turn the flat project rows into raised cards or introduce shadows.",
+      "Don't style passive technology tags as buttons or filters.",
+      "Don't rely on the arrow movement alone to identify a repository action.",
+      "Don't replace the shared legal reading column with the portfolio's wide row layout."
+    ]
+  }
+}
